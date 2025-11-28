@@ -17,3 +17,4 @@ afficherTemps{
 afficherVieJoueur{
 
 }
+  cxaca
