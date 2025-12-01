@@ -35,3 +35,19 @@ void afficherplateauterminal(int tab[N][P]) {
         printf("\n");
     }
 }
+
+void gravite(int tab[N][P]) {
+    int i, j;
+
+    for (j = 0; j < P; j++) {                 // colonne
+        for (i = N - 1; i > 0; i--) {        // ligne
+            while (tab[i][j] == 0 && i > 0) {
+                for (int k = i; k > 0; k--) {
+                    tab[k][j] = tab[k - 1][j];
+                }
+                tab[0][j] = 0;
+            }
+        }
+    }
+}
+
