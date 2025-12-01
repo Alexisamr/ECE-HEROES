@@ -8,7 +8,7 @@ gererMenu{
 
 nouvellePartie{
 
-}
+} 
 
 reprendrePartie{
 
