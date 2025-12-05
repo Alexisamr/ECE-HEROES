@@ -1,14 +1,13 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #define N 5
 #define P 10
 
-
 void initialisationplateau(int tab[N][P]) {
 	int i, j;
 	for (i = 0; i < N; i++) {
-        // boucle pour parcourir "les colonnes" de la ligne i
         for (j = 0; j < P; j++) {
         	tab[i][j] = 0;
         }
@@ -62,6 +61,42 @@ void itemspeciaux(int tab[N][J]) {
                     tab[i][j] = '#';
 				compteur++;
             }
+        }
+    }
+}
+
+void detectionsuite4horizontale(int tab[N][P]) {
+	int i, j;
+	for (i = 0; i < N; i++) {
+        for (j = 0; j < P; j++) {
+        	tab[i][j] = 0;
+        }
+    }
+}
+
+void detectionsuite4verticale(int tab[N][P]) {
+	int i, j;
+	for (i = 0; i < N; i++) {
+        for (j = 0; j < P; j++) {
+        	tab[i][j] = 0;
+        }
+    }
+}
+
+void detectioncroix9(int tab[N][P]) {
+	int i, j;
+	for (i = 0; i < N; i++) {
+        for (j = 0; j < P; j++) {
+        	tab[i][j] = 0;
+        }
+    }
+}
+
+void detectioncarre4par4(int tab[N][P]) {
+	int i, j;
+	for (i = 0; i < N; i++) {
+        for (j = 0; j < P; j++) {
+        	tab[i][j] = 0;
         }
     }
 }
