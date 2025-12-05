@@ -51,3 +51,19 @@ void gravite(int tab[N][P]) {
     }
 }
 
+void itemspeciaux(int tab[N][J]) {
+    static int compteur = 1;
+	for (int i = 0; i < N; i++) {
+        for (int j = 0; j < J; j++) 
+			if (tab[i][j] == 0) {
+				if (compteur % 8 == 0)
+                    tab[i][j] = '*';
+                else if (compteur % 10 == 0)
+                    tab[i][j] = '#';
+				compteur++;
+            }
+        }
+    }
+}
+
+
