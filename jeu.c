@@ -74,12 +74,10 @@ void detectionsuite4horizontale(int tab[N][P]) {
                     tab[i][j-1]=0;
                     tab[i][j-2]=0;
                     tab[i][j-3]=0;
-
-                    compteur();  
+					compteur();  
                     compteur = 1;   
                 }
-
-            } else {
+			} else {
                 compteur = 1;
             }
         }
@@ -99,7 +97,7 @@ void detectionSuite4Verticale(int tab[N][P]) {
 					compteur(); 
 					compteur=1;
                 }
-				} else {
+			} else {
                 compteurIdentiques = 1;
             }
         }
