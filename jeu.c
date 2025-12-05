@@ -109,9 +109,13 @@ void detectionCroix9(int tab[N][J]) {
             int x=tab[i][j];
             if(tab[i][j-1]==x && tab[i][j+1]==x && tab[i-1][j]==x && tab[i+1][j]==x){
                 for(int col=0;col<J;col++)
+					if (tab[i][col]==x) {
                     tab[i][col]=0;
+					}
                 for(int lin=0;lin<N;lin++)
+					if (tab[lin][j]==x) {
                     tab[lin][j]=0;
+					}
                 compteur();
             }
         }
@@ -119,12 +123,32 @@ void detectionCroix9(int tab[N][J]) {
 }
 
 
-void detectioncarre4par4(int tab[N][P]) {
-	int i, j;
-	for (i = 0; i < N; i++) {
-        for (j = 0; j < P; j++) {
-        	tab[i][j] = 0;
+void detectionCarre4(int tab[N][J]) {
+    for(int i=0;i<=N-4;i++){
+        for(int j=0;j<=J-4;j++){
+            int x=tab[i][j];
+            if(tab[i][j+1]==x &&
+               tab[i][j+2]==x &&
+               tab[i][j+3]==x &&
+               tab[i+1][j]==x &&
+               tab[i+1][j+1]==x &&
+               tab[i+1][j+2]==x &&
+               tab[i+1][j+3]==x &&
+               tab[i+2][j]==x &&
+               tab[i+2][j+1]==x &&
+               tab[i+2][j+2]==x &&
+               tab[i+2][j+3]==x &&
+               tab[i+3][j]==x &&
+               tab[i+3][j+1]==x &&
+               tab[i+3][j+2]==x &&
+               tab[i+3][j+3]==x){
+                for(int a=0;a<4;a++)
+                    for(int b=0;b<4;b++)
+                        tab[i+a][j+b]=0;
+                compteur();
+            }
         }
     }
 }
+
 
