@@ -103,17 +103,21 @@ void detectionSuite4Verticale(int tab[N][P]) {
         }
     }
 }
-
-
-
-void detectioncroix9(int tab[N][P]) {
-	int i, j;
-	for (i = 0; i < N; i++) {
-        for (j = 0; j < P; j++) {
-        	tab[i][j] = 0;
+void detectionCroix9(int tab[N][J]) {
+    for(int i=1;i<N-1;i++){
+        for(int j=1;j<J-1;j++){
+            int x=tab[i][j];
+            if(tab[i][j-1]==x && tab[i][j+1]==x && tab[i-1][j]==x && tab[i+1][j]==x){
+                for(int col=0;col<J;col++)
+                    tab[i][col]=0;
+                for(int lin=0;lin<N;lin++)
+                    tab[lin][j]=0;
+                compteur();
+            }
         }
     }
 }
+
 
 void detectioncarre4par4(int tab[N][P]) {
 	int i, j;
