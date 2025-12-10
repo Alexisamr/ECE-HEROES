@@ -15,8 +15,18 @@ void Color() { // pour mettre des couleurs si jamais dieu le veux INSHALAHH
 
 
 void afficherMenu() {
-  systeme('cls');
-
+    systeme('cls');
+    printf("\n\n");
+    printf("************************************\n");
+    printf("  --------ECE HEROES SAGA--------\n");
+    printf("************************************\n\n");
+    
+    printf("      1. Lancer une nouvelle partie\n");
+    printf("      2. Charger une partie\n");
+    printf("      3. Lire les regles\n");
+    printf("      4. Quitter\n\n");
+    
+    printf("      Votre choix : ");
 }
 
 void afficherTitre() {
