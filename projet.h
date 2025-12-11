@@ -15,7 +15,7 @@ typedef struct { //ça c'est pour toi ruben
   int temps_restants;
   int coups_restants:
   int niveau_actuel;
-}
+} t_jeu;
 
 // TOUTES LES FONCTIONS 
 
