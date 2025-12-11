@@ -9,13 +9,13 @@ void Gotoxy(int x, int y) { // c'est le truc qui permet de faire une fenêtre et
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
 }
 
-void Color() { // pour mettre des couleurs si jamais dieu le veux INSHALAHH si on veut aussi
+//void Color() { pour mettre des couleurs si jamais dieu le veux INSHALAHH si on veut aussi
 
-}
+//}
 
 
 void afficherMenu() {
-    systeme('cls');
+    system('cls');
     printf("\n\n");
     printf("************************************\n");
     printf("  --------ECE HEROES SAGA--------\n");
@@ -37,7 +37,7 @@ void afficherTitre() {
     printf("=========================================================================================\n");
 }
 
-afficherRegles{
+void afficherRegles{
 
 }
 
