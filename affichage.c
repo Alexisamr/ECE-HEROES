@@ -44,7 +44,7 @@ void afficherRegles() {
     system("cls");
     afficherTitre();
 
-    printf("\n --- LES REGLES --- \n\n");
+    printf("\n --- LES REGLES --- \n\n"); // à finir faut que bien que je vérifie les regles 
     printf("                          ");
     printf("                          ");
     printf("                          ");
