@@ -18,7 +18,7 @@ void afficherMenu() {
     system('cls');
     printf("\n\n");
     printf("************************************\n");
-    printf("  --------ECE HEROES SAGA--------\n");
+    printf("  --------ECE HEROES --------\n");
     printf("************************************\n\n");
     
     printf("      1. Lancer une nouvelle partie\n");
@@ -31,7 +31,7 @@ void afficherMenu() {
 
 void afficherTitre() {
     Gotoxy(0, 0);
-    Color(15, 0); 
+    Color(15, 0); //blanc
     printf("=========================================================================================\n");
     printf("   PROJET MATCH-3  |  ECE HEROES  |  ING1  2025\n");
     printf("=========================================================================================\n");
@@ -41,10 +41,14 @@ void afficherRegles{
 
 }
 
-afficherTemps{
+void afficherTemps(){
 
 }
 
-afficherVieJoueur{
+void afficherVieJoueur(){
 
+}
+
+void actualiserGrille(jeu){
+    
 }
