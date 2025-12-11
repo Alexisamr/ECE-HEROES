@@ -79,17 +79,21 @@ void actualiserGrille(jeu){
     
 }
 
-void afficherContrat(t_jeu jeu) {
+void afficherContrat(t_jeu jeu) { //faut que l'utilisateur sache quoi faire pour gagner
     
 }
 
-void afficherCoups(t_jeu jeu) {
+void afficherCoups(t_jeu jeu) { // Si plus de coups ou pas le temps fin de la partie gros nul
     
 }
 
-void afficherNiveau(t_jeu jeu) {
+void afficherNiveau(t_jeu jeu) { //pour savoir à quelle niveau en est l'utilisateur 
     
 }
 
-void afficherEcranFin(int victoire) {
+void afficherEcranFin(int resultat) { 
+    //Vicoitre Contrat rempli 
+    //Défaite Temps écoulé 
+    //Défaite Aucun coups restant 
+    //Défaite Plus de vies
 }
