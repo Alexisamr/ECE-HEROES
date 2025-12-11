@@ -78,3 +78,18 @@ void actualiserGrille(jeu){
 //fonction de nazi flm je la fait après
     
 }
+
+void afficherContrat(t_jeu jeu) {
+    
+}
+
+void afficherCoups(t_jeu jeu) {
+    
+}
+
+void afficherNiveau(t_jeu jeu) {
+    
+}
+
+void afficherEcranFin(int victoire) {
+}
