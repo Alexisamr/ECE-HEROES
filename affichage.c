@@ -10,7 +10,7 @@ void Gotoxy(int x, int y) { // c'est le truc qui permet de faire une fenêtre et
 }
 
 void Color() { //pour mettre des couleurs si jamais dieu le veux INSHALAHH si on veut aussi
-    COORD c;
+    COORD c; // 0=Noir, 15=Blanc, 12=Rouge, 10=Vert, 14=Jaune, 11=Cyan, 13=Violet
     c.X = x:
     c.Y = y;
     SetConsoleTestAttribute(H, f* 16 + t);
@@ -43,12 +43,15 @@ void afficherMenu() {
 void afficherRegles() {
     system("cls");
     afficherTitre();
-
-    printf("\n --- LES REGLES --- \n\n"); // à finir faut que bien que je vérifie les regles 
+    printf("\n --- LES REGLES --- \n\n"); // à finir faut que bien que je vérifie les regles mais je pense c'est ça 
+    printf("                          "); //le but du jeu, les contraintes, les figures spéciales, les contrôles
     printf("                          ");
     printf("                          ");
     printf("                          ");
     printf("                          ");
+    printf("                          ");
+    printf("                          ");
+    getchar(); getchar(); // ça c'est hyper important en gros ça nétoie les petites merde ça purge pour les futures entrée de l'utilisateur (merci gemini 3 pro max ultra HD 4K) 
 }
 
 void afficherTemps(t_jeu jeu ){ //donc la jvais utiliser gotoxy pour cibler l'endroit ou le temps sera afficher et changé uniquement cette endroit
