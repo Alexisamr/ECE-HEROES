@@ -10,11 +10,13 @@
 
 typedef struct { //ça c'est pour toi ruben
   int grille[LIGNES][COLONNES];
+  int ancienne_grille[LIGNES][COLONNES];
   int score;
   int vies;
   int temps_restants;
   int coups_restants:
   int niveau_actuel;
+  en_cours;
 } t_jeu;
 
 // TOUTES LES FONCTIONS 
