@@ -83,15 +83,21 @@ void actualiserGrille(jeu){
 }
 
 void afficherContrat(t_jeu jeu) { //faut que l'utilisateur sache quoi faire pour gagner
-    
+    Gotoxy(4, 0);
+    Color(14, 0);
+    printf("")
 }
 
 void afficherCoups(t_jeu jeu) { // Si plus de coups ou pas le temps fin de la partie gros nul
-    
+    Gotoxy(75, 1);
+    Color(13, 0);
+    printf("COUPS : %d, jeu.coups_restants);
 }
 
 void afficherNiveau(t_jeu jeu) { //pour savoir à quelle niveau en est l'utilisateur 
-    
+    Gotoxy(0,0);
+    Color(14, 0)
+    printf("NIVEAU : %d, jeu.niveau_actuel
 }
 
 void afficherEcranFin(int resultat) { 
