@@ -20,13 +20,17 @@ void afficherTitre() {
     Gotoxy(0, 0); //important pour être certain que l'affichage commence vraiment au début
     Color(15, 0); //blanc sur noir
     printf("=========================================================================================\n");
-    printf("   PROJET MATCH-3  |  ECE HEROES  |  ING1  2025\n");
+    printf("               PROJET MATCH-3  |  ECE HEROES  |  ING1  2025\n");
     printf("=========================================================================================\n");
 }
 
 void afficherMenu() {
+	syteme('cls');
+	Color(15, 0);
 	int choix;
-	printf("------MENU------\n");
+	printf("************************************\n");
+    printf("         ECE HEROES-MENU             \n");
+    printf("************************************\n\n");
 	printf("1. Afficher les regles du jeu\n");
 	printf("2. Nouvelle partie\n");
 	printf("3. Reprendre une partie\n");
@@ -99,10 +103,36 @@ void afficherNiveau(t_jeu jeu) { //pour savoir à quelle niveau en est l'utilisa
     Color(14, 0)
     printf("NIVEAU : %d, jeu.niveau_actuel
 }
-
-void afficherEcranFin(int resultat) { 
     //Vicoitre Contrat rempli 
     //Défaite Temps écoulé 
     //Défaite Aucun coups restant 
     //Défaite Plus de vies
+	// Affiche un message de fin selon si on a gagné ou perdu
+void afficherEcranFin(int resultat) {
+    system("cls"); 
+    Gotoxy(20, 10);
+    printf("========================================");
+
+    Gotoxy(35, 12); // le millieu du cadre 
+
+    if (resultat == 1) { // SI Victoire
+        Color(10, 0); // Vert fluo
+        printf("BRAVO ! NIVEAU REUSSI !");
+    } 
+    else { // SI DEFAITE 
+        Color(12, 0); // Rouge 
+        printf("GAME OVER...");
+        
+        Gotoxy(30, 16);
+        Color(15, 0);
+        if (resultat == -1) printf("Raison : Temps ecoule !");
+        if (resultat == -2) printf("Raison : Plus de coups !");
+        if (resultat == -3) printf("Raison : Plus de vies !");
+    }
+
+    Gotoxy(25, 20);
+    Color(15, 0);
+    printf("Appuyez sur une touche pour quitter...");
+    getchar(); getchar(); 
+}
 }
