@@ -25,19 +25,19 @@ void afficherTitre() {
 }
 
 void afficherMenu() {
-    system('cls');// clear l'affichage
-    printf("\n\n");
-    Color(14,0); //jaune 
-    printf("************************************\n");
-    printf("  --------ECE HEROES --------\n");
-    printf("************************************\n\n");
-    Color(15,0);
-    printf("      1. Lancer une nouvelle partie\n");
-    printf("      2. Charger une partie\n");
-    printf("      3. Lire les regles\n");
-    printf("      4. Quitter\n\n");
-    
-    printf("      Votre choix : ");
+	int choix;
+	printf("------MENU------\n");
+	printf("1. Afficher les regles du jeu\n");
+	printf("2. Nouvelle partie\n");
+	printf("3. Reprendre une partie\n");
+	printf("Choisissez un mode : ");
+	scanf("%d", &choix);
+	while(choix < 0 || choix > 4){
+		printf("Choissisez un menu entre 1 et 3 :");
+		scanf("%d", &choix);
+	}
+	printf("%d", choix);
+	return choix;
 }
 
 void afficherRegles() {
