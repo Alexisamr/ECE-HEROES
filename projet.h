@@ -13,7 +13,7 @@ typedef struct { //ça c'est pour toi ruben
   int ancienne_grille[LIGNES][COLONNES];
   int score;
   int vies;
-  int temps_restants;
+  int temps_restant;
   int coups_restants;
   int niveau_actuel;
   int en_cours;
