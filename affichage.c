@@ -23,7 +23,7 @@ void afficherTitre() {
 }
 
 void afficherMenu() {
-	syteme('cls');
+	sytem("cls");
 	Color(15, 0);
 	int choix;
 	printf("************************************\n");
@@ -73,14 +73,14 @@ void afficherVies(t_jeu jeu){ //t_jeu jeu c'est des listes qui contiennent avec 
 //faudra bien tout relier avec le main et le headers
     Gotoxy(35, 0); //rouge
     Color(12, 0);
-    printf("VIES: %d, jeu.vies);
+    printf("VIES: %d, jeu.vies");
     Color(15, 0);
 }
 
 void afficherScore(t_jeu jeu){
     Gotoxy(45, 0); 
     Color(11,0); // cyan
-    printf("| SCORE: %05d", jeu.score): // 05 ça met des zéro devant pour faire un score styléaisea_iazruhaze
+    printf("| SCORE: %05d", jeu.score); // 05 ça met des zéro devant pour faire un score styléaisea_iazruhaze
     Color(15, 0); // et hop on remet blanco
 }
 
@@ -98,7 +98,7 @@ void afficherContrat(t_jeu jeu) { //faut que l'utilisateur sache quoi faire pour
 void afficherCoups(t_jeu jeu) { // Si plus de coups ou pas le temps fin de la partie gros nul
     Gotoxy(75, 1);
     Color(13, 0);
-    printf("COUPS : %d, jeu.coups_restants);
+    printf("COUPS : %d, jeu.coups_restants");
 }
 
 void afficherNiveau(t_jeu jeu) { //pour savoir à quelle niveau en est l'utilisateur 
