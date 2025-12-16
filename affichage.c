@@ -9,11 +9,9 @@ void Gotoxy(int x, int y) { // c'est le truc qui permet de faire une fenêtre et
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
 }
 
-void Color() { //pour mettre des couleurs si jamais dieu le veux INSHALAHH si on veut aussi
-    COORD c; // 0=Noir, 15=Blanc, 12=Rouge, 10=Vert, 14=Jaune, 11=Cyan, 13=Violet
-    c.X = x:
-    c.Y = y;
-    SetConsoleTestAttribute(H, f* 16 + t);
+void Color(int t, int f) {
+    HANDLE H = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(H, f * 16 + t);
 }
 
 void afficherTitre() {
