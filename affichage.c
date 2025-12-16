@@ -73,7 +73,7 @@ void afficherVies(t_jeu jeu){ //t_jeu jeu c'est des listes qui contiennent avec 
 //faudra bien tout relier avec le main et le headers
     Gotoxy(35, 0); //rouge
     Color(12, 0);
-    printf("VIES: %d, jeu.vies");
+    printf("VIES: %d", jeu.vies);
     Color(15, 0);
 }
 
@@ -162,9 +162,10 @@ void afficherGrille(t_jeu jeu, int curseurX, int curseurY, int selectionActive) 
             printf("%c", symbole);
         }
         
-        // Bordure droite
+        //mur de droite (Position Forcée)
+        Gotoxy(x_depart + COLONNES, y_depart + i);
         Color(15, 0);
-        printf("|");
+        printf("%c", 186); // Barre verticale double (║)
     }
 
     // Ligne du bas 
@@ -186,13 +187,13 @@ void afficherContrat(t_jeu jeu) { //faut que l'utilisateur sache quoi faire pour
 void afficherCoups(t_jeu jeu) { // Si plus de coups ou pas le temps fin de la partie gros nul
     Gotoxy(75, 1);
     Color(13, 0);
-    printf("COUPS : %d, jeu.coups_restants");
+    printf("COUPS : %d", jeu.coups_restants);
 }
 
 void afficherNiveau(t_jeu jeu) { //pour savoir à quelle niveau en est l'utilisateur 
     Gotoxy(0,0);
     Color(14, 0)
-    printf("NIVEAU : %d, jeu.niveau_actuel);
+    printf("NIVEAU : %d", jeu.niveau_actuel);
 }
     //Vicoitre Contrat rempli 
     //Défaite Temps écoulé 
