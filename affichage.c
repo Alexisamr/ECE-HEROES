@@ -127,12 +127,12 @@ void afficherGrille(t_jeu jeu, int curseurX, int curseurY, int selectionActive) 
 
             // Gestion du symbole
             switch(val_case) {
-                case 0: couleur_texte = 0;  symbole = ' '; break;
-                case 1: couleur_texte = 12; symbole = 'O'; break;
-                case 2: couleur_texte = 10; symbole = '&'; break;
-                case 3: couleur_texte = 14; symbole = '#'; break;
-                case 4: couleur_texte = 9;  symbole = '@'; break;
-                case 5: couleur_texte = 13; symbole = '$'; break;
+                case 0: couleur_texte = 0;  symbole = '0'; break;
+                case 1: couleur_texte = 12; symbole = '1'; break;
+                case 2: couleur_texte = 10; symbole = '2'; break;
+                case 3: couleur_texte = 14; symbole = '3'; break;
+                case 4: couleur_texte = 9;  symbole = '4'; break;
+                case 5: couleur_texte = 13; symbole = '5'; break;
                 default: couleur_texte = 15; symbole = '?'; break;
             }
             
