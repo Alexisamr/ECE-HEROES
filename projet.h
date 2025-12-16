@@ -26,6 +26,6 @@ void afficherTitre();
 void afficherRegles();
 void afficherTemps(t_jeu jeu);
 void afficherVieJoueur(t_jeu jeu);
-void actualiser_grille(t_jeu jeu);
+void afficherGrille(t_jeu jeu, int curseurX, int curseurY, int selectionActive);
 
 #endif
