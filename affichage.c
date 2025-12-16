@@ -22,8 +22,8 @@ void afficherTitre() {
     printf("=========================================================================================\n");
 }
 
-void afficherMenu() {
-	sytem("cls");
+int afficherMenu() {
+	system("cls");
 	Color(15, 0);
 	int choix;
 	printf("************************************\n");
@@ -46,7 +46,7 @@ void afficherRegles() {
     system("cls");
     afficherTitre();
     printf("\n --- LES REGLES --- \n\n"); // à finir faut que bien que je vérifie les regles mais je pense c'est ça 
-    printf("BUT DU JEU : ")
+    printf("BUT DU JEU : ");
 	printf("- Alignez 3 symboles identiques pour les détruire et marquer des points"); //le but du jeu, les contraintes, les figures spéciales, les contrôles
     printf("- Remplissez le CONTRAT avant la fin du temps imparti !\n\n");
 	
@@ -95,86 +95,65 @@ void afficherGrille(t_jeu jeu, int curseurX, int curseurY, int selectionActive) 
     int couleur_texte;
     char symbole;
 
-    //dessin du cadre
+    // --- DESSIN CADRE HAUT ---
     Color(15, 0); // Blanc 
-    // Ligne du haut
     Gotoxy(x_depart - 1, y_depart - 1);
-    printf("+");
-    for(j=0; j<COLONNES; j++) printf("-");
-    printf("+");
+    printf("%c", 201); // Coin double ╔
+    for(j=0; j<COLONNES; j++) printf("%c", 205); // Barre double ═
+    printf("%c", 187); // Coin double ╗
 
-    //parcour la grille
+    // --- PARCOURS GRILLE ---
     for (i = 0; i < LIGNES; i++) {
+        // Mur de Gauche
         Gotoxy(x_depart - 1, y_depart + i);
         Color(15, 0); 
-        printf("|"); 
+        printf("%c", 186); // Barre verticale double ║
 
         for (j = 0; j < COLONNES; j++) {
             // On récupère la valeur dans la mémoire du jeu
             val_case = jeu.grille[i][j];
-            //gestion du curser
+            
+            // Gestion du curseur
             couleur_fond = 0; // Noir 
-
             // Si on est sur la case du curseur (X,Y)
             if (j == curseurX && i == curseurY) {
                 if (selectionActive == 1) {
-                    couleur_fond = 13; // Fond Violet (Si on a cliqué Espace)
+                    couleur_fond = 13; // Fond Violet
                 } else {
-                    couleur_fond = 8;  // Fond Gris (Si on est juste dessus)
+                    couleur_fond = 8;  // Fond Gris
                 }
             }
 
-// --- C. GESTION DU SYMBOLE (ITEM) ---
+            // Gestion du symbole
             switch(val_case) {
-                case 0: // Case vide
-                    couleur_texte = 0; 
-                    symbole = ' '; // IMPORTANT : Espace pour voir le curseur
-                    break;
-                case 1: 
-                    couleur_texte = 12; // Rouge
-                    symbole = 'O';      
-                    break;
-                case 2: 
-                    couleur_texte = 10; // Vert
-                    symbole = '&';      
-                    break;
-                case 3: 
-                    couleur_texte = 14; // Jaune
-                    symbole = '#';
-                    break;
-                case 4: 
-                    couleur_texte = 9;  // Bleu
-                    symbole = '@';
-                    break;
-                case 5: 
-                    couleur_texte = 13; // Magenta
-                    symbole = '$';
-                    break;
-                default: 
-                    couleur_texte = 15; 
-                    symbole = '?';
-                    break;
+                case 0: couleur_texte = 0;  symbole = ' '; break;
+                case 1: couleur_texte = 12; symbole = 'O'; break;
+                case 2: couleur_texte = 10; symbole = '&'; break;
+                case 3: couleur_texte = 14; symbole = '#'; break;
+                case 4: couleur_texte = 9;  symbole = '@'; break;
+                case 5: couleur_texte = 13; symbole = '$'; break;
+                default: couleur_texte = 15; symbole = '?'; break;
             }
             
-            // --- D. AFFICHAGE DE LA CASE ---
+            // Affichage de la case
             Gotoxy(x_depart + j, y_depart + i); 
             Color(couleur_texte, couleur_fond); 
             printf("%c", symbole);
         }
         
-        //mur de droite (Position Forcée)
+        // Mur de droite (Position Forcée)
         Gotoxy(x_depart + COLONNES, y_depart + i);
         Color(15, 0);
-        printf("%c", 186); // Barre verticale double (║)
+        printf("%c", 186); // Barre verticale double ║
     }
 
-    // Ligne du bas 
+    // --- DESSIN CADRE BAS ---
     Gotoxy(x_depart - 1, y_depart + LIGNES);
-    printf("+");
-    for(j=0; j<COLONNES; j++) printf("-");
-    printf("+");
+    printf("%c", 200); // Coin double ╚
+    for(j=0; j<COLONNES; j++) printf("%c", 205); // Barre double ═
+    printf("%c", 188); // Coin double ╝
 
-    //blanco pour aucun bug
+    // Reset couleur
     Color(15, 0);
 }
 
