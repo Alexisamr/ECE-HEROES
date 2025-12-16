@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
+#include "projet.h"
 
 void Gotoxy(int x, int y) { // c'est le truc qui permet de faire une fenêtre et de bouger le cruser tout ça grâce à <windows.h>
     COORD c;
@@ -34,7 +35,7 @@ int afficherMenu() {
 	printf("3. Reprendre une partie\n");
 	printf("Choisissez un mode : ");
 	scanf("%d", &choix);
-	while(choix < 0 || choix > 4){
+	while(choix < 1 || choix > 3){
 		printf("Choissisez un menu entre 1 et 3 :");
 		scanf("%d", &choix);
 	}
