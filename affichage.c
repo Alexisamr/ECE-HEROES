@@ -48,13 +48,18 @@ void afficherRegles() {
     system("cls");
     afficherTitre();
     printf("\n --- LES REGLES --- \n\n"); // à finir faut que bien que je vérifie les regles mais je pense c'est ça 
-    printf("                          "); //le but du jeu, les contraintes, les figures spéciales, les contrôles
-    printf("                          ");
-    printf("                          ");
-    printf("                          ");
-    printf("                          ");
-    printf("                          ");
-    printf("                          ");
+    printf("BUT DU JEU : ")
+	printf("- Alignez 3 symboles identiques pour les détruire et marquer des points"); //le but du jeu, les contraintes, les figures spéciales, les contrôles
+    printf("- Remplissez le CONTRAT avant la fin du temps imparti !\n\n");
+	
+    printf("COMMANDES : ");
+    printf("- Deplacement : [Z] Haut, [S] Bas, [Q] Gauche, [D] Droite \n");
+	printf("- [ESPACE] pour selectionner et echanger deux cases. \n\n");
+	
+    printf("BONUS & DEFAITE :\n"); 
+    printf("- Alignez 4 ou 5 items pour créer des EXPLOSIONS !\n");
+
+	printf("  Appuyer sur une touche pour revenir au menu ...");
     getchar(); getchar(); // ça c'est hyper important en gros ça nétoie les petites merde ça purge pour les futures entrée de l'utilisateur (merci gemini 3 pro max ultra HD 4K) 
 }
 
