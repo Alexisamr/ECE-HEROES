@@ -84,9 +84,96 @@ void afficherScore(t_jeu jeu){
     Color(15, 0); // et hop on remet blanco
 }
 
-void actualiserGrille(jeu){
-//fonction de nazi flm je la fait après
+void afficherGrille(t_jeu jeu, int curseurX, int curseurY, int selectionActive) {
+    // grille soit centrée et pas collée au bord
+    int x_depart = 15; 
+    int y_depart = 5;  
     
+    int i, j;
+    int val_case;
+    int couleur_fond;
+    int couleur_texte;
+    char symbole;
+
+    //dessin du cadre
+    Color(15, 0); // Blanc 
+    // Ligne du haut
+    Gotoxy(x_depart - 1, y_depart - 1);
+    printf("+");
+    for(j=0; j<COLONNES; j++) printf("-");
+    printf("+");
+
+    //parcour la grille
+    for (i = 0; i < LIGNES; i++) {
+        Gotoxy(x_depart - 1, y_depart + i);
+        Color(15, 0); 
+        printf("|"); 
+
+        for (j = 0; j < COLONNES; j++) {
+            // On récupère la valeur dans la mémoire du jeu
+            val_case = jeu.grille[i][j];
+            //gestion du curser
+            couleur_fond = 0; //noir
+            // Si les coordonnées correspondent à celles du curseur du joueur
+            if (j == curseurX && i == curseurY) {
+                if (selectionActive == 1) {
+                    couleur_fond = 13; // magenta quand joueur selectionne
+                } else {
+                    couleur_fond = 8;  // gris quand joueur survol
+                }
+            }
+
+            //traduction des chiffres en symbole mais on est pas obligé
+            switch(val_case) {
+                case 0: // Case vide
+                    couleur_texte = 0; // Noir (invisible)
+                    symbole = ' ';
+                    break;
+                case 1: 
+                    couleur_texte = 12; // Rouge clair
+                    symbole = 'O';      // Ou un caractère comme 3 (coeur)
+                    break;
+                case 2: 
+                    couleur_texte = 10; // Vert clair
+                    symbole = '&';      // Ou trèfle
+                    break;
+                case 3: 
+                    couleur_texte = 14; // Jaune
+                    symbole = '#';
+                    break;
+                case 4: 
+                    couleur_texte = 9;  // Bleu clair
+                    symbole = '@';
+                    break;
+                case 5: 
+                    couleur_texte = 11; // Cyan
+                    symbole = '$';
+                    break;
+                default: // Au cas où une valeur bizarre traîne
+                    couleur_texte = 15; // Blanc
+                    symbole = '?';
+                    break;
+            }
+
+            //affichage
+            Gotoxy(x_depart + j, y_depart + i); // On se place
+            Color(couleur_texte, couleur_fond); // On applique les couleurs
+            printf("%c", symbole);              // On dessine
+        }
+        
+        // Bordure droite
+        Color(15, 0);
+        printf("|");
+    }
+
+    // Ligne du bas 
+    Gotoxy(x_depart - 1, y_depart + LIGNES);
+    printf("+");
+    for(j=0; j<COLONNES; j++) printf("-");
+    printf("+");
+
+    //blanco pour aucun bug
+    Color(15, 0);
 }
 
 void afficherContrat(t_jeu jeu) { //faut que l'utilisateur sache quoi faire pour gagner
