@@ -113,52 +113,53 @@ void afficherGrille(t_jeu jeu, int curseurX, int curseurY, int selectionActive) 
             // On récupère la valeur dans la mémoire du jeu
             val_case = jeu.grille[i][j];
             //gestion du curser
-            couleur_fond = 0; //noir
-            // Si les coordonnées correspondent à celles du curseur du joueur
+            couleur_fond = 0; // Noir 
+
+            // Si on est sur la case du curseur (X,Y)
             if (j == curseurX && i == curseurY) {
                 if (selectionActive == 1) {
-                    couleur_fond = 13; // magenta quand joueur selectionne
+                    couleur_fond = 13; // Fond Violet (Si on a cliqué Espace)
                 } else {
-                    couleur_fond = 8;  // gris quand joueur survol
+                    couleur_fond = 8;  // Fond Gris (Si on est juste dessus)
                 }
             }
 
-            //traduction des chiffres en symbole mais on est pas obligé
+// --- C. GESTION DU SYMBOLE (ITEM) ---
             switch(val_case) {
                 case 0: // Case vide
-                    couleur_texte = 0; // Noir (invisible)
-                    symbole = ' ';
+                    couleur_texte = 0; 
+                    symbole = ' '; // IMPORTANT : Espace pour voir le curseur
                     break;
                 case 1: 
-                    couleur_texte = 12; // Rouge clair
-                    symbole = 'O';      // Ou un caractère comme 3 (coeur)
+                    couleur_texte = 12; // Rouge
+                    symbole = 'O';      
                     break;
                 case 2: 
-                    couleur_texte = 10; // Vert clair
-                    symbole = '&';      // Ou trèfle
+                    couleur_texte = 10; // Vert
+                    symbole = '&';      
                     break;
                 case 3: 
                     couleur_texte = 14; // Jaune
                     symbole = '#';
                     break;
                 case 4: 
-                    couleur_texte = 9;  // Bleu clair
+                    couleur_texte = 9;  // Bleu
                     symbole = '@';
                     break;
                 case 5: 
-                    couleur_texte = 11; // Cyan
+                    couleur_texte = 13; // Magenta
                     symbole = '$';
                     break;
-                default: // Au cas où une valeur bizarre traîne
-                    couleur_texte = 15; // Blanc
+                default: 
+                    couleur_texte = 15; 
                     symbole = '?';
                     break;
             }
-
-            //affichage
-            Gotoxy(x_depart + j, y_depart + i); // On se place
-            Color(couleur_texte, couleur_fond); // On applique les couleurs
-            printf("%c", symbole);              // On dessine
+            
+            // --- D. AFFICHAGE DE LA CASE ---
+            Gotoxy(x_depart + j, y_depart + i); 
+            Color(couleur_texte, couleur_fond); 
+            printf("%c", symbole);
         }
         
         // Bordure droite
