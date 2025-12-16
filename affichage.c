@@ -178,11 +178,54 @@ void afficherGrille(t_jeu jeu, int curseurX, int curseurY, int selectionActive) 
     Color(15, 0);
 }
 
-void afficherContrat(t_jeu jeu) { //faut que l'utilisateur sache quoi faire pour gagner
-    Gotoxy(4, 0);
-    Color(14, 0);
-    printf("")
+
+void afficherContrat(t_jeu jeu) {
+    // On place le contrat à Droite de la grille (x=65) pour ne pas gêner
+    int x_depart = 65;
+    int y_depart = 5;
+
+    // Tableaux pour retrouver les mêmes couleurs/symboles que la grille
+    // Index 0 inutile, on utilise 1 à 5
+    char symboles[] = {' ', 'O', '&', '#', '@', '$'}; 
+    int couleurs[] = {0, 12, 10, 14, 9, 13};
+
+    Gotoxy(x_depart, y_depart);
+    Color(15, 0); // Blanc
+    printf("--- CONTRAT ---");
+
+    int i;
+    int ligne_actuelle = 0;
+
+    // On parcourt les 5 types d'items
+    for(i = 1; i <= 5; i++) {
+        
+        // On affiche seulement s'il reste des items de ce type à détruire
+        if (jeu.objectifs[i] > 0) {
+            ligne_actuelle++;
+            Gotoxy(x_depart, y_depart + (ligne_actuelle * 2)); // Espacé de 2 lignes
+
+            // 1. Le Symbole en couleur
+            Color(couleurs[i], 0); 
+            printf("[%c]", symboles[i]);
+
+            // 2. Le nombre restant en blanc
+            Color(15, 0);
+            // Le "   " à la fin sert à effacer les vieux chiffres (si on passe de 10 à 9)
+            printf(" : x %d a eliminer   ", jeu.objectifs[i]);
+        }
+        else {
+            // Optionnel : Si l'objectif est fini (0), on affiche "OK" en vert
+            // Tu peux supprimer ce 'else' si tu préfères que la ligne disparaisse
+            ligne_actuelle++;
+            Gotoxy(x_depart, y_depart + (ligne_actuelle * 2));
+            Color(10, 0); // Vert
+            printf("TYPE %d : TERMINE !      ", i);
+        }
+    }
+    
+    Color(15, 0); // Reset blanc
 }
+
 
 void afficherCoups(t_jeu jeu) { // Si plus de coups ou pas le temps fin de la partie gros nul
     Gotoxy(75, 1);
