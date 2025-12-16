@@ -151,4 +151,18 @@ void detectionCarre4(int tab[N][J]) {
     }
 }
 
-
+int decompteur() {
+	int duree;
+    
+    printf("Durée en secondes : ");
+    scanf("%d", &duree);
+    
+    for (int i = duree; i > 0; i--) {
+        printf("%d\n", i);
+        
+        time_t attente = time(NULL) + 1;
+        while (time(NULL) < attente);
+    }
+    
+    printf("Terminé !\n");
+}
