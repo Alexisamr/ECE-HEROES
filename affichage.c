@@ -104,7 +104,7 @@ void afficherCoups(t_jeu jeu) { // Si plus de coups ou pas le temps fin de la pa
 void afficherNiveau(t_jeu jeu) { //pour savoir à quelle niveau en est l'utilisateur 
     Gotoxy(0,0);
     Color(14, 0)
-    printf("NIVEAU : %d, jeu.niveau_actuel
+    printf("NIVEAU : %d, jeu.niveau_actuel);
 }
     //Vicoitre Contrat rempli 
     //Défaite Temps écoulé 
