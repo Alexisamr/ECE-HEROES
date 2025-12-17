@@ -3,9 +3,6 @@
 #include <windows.h>
 #include "projet.h"
 
-int afficherRegles(){
-	
-}
 
 void Gotoxy(int x, int y) { // c'est le truc qui permet de faire une fenêtre et de bouger le cruser tout ça grâce à <windows.h>
     COORD c;
