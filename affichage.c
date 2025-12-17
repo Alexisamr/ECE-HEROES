@@ -215,39 +215,6 @@ void afficherNiveau(t_jeu jeu) { //pour savoir à quelle niveau en est l'utilisa
     Color(14, 0);
     printf("NIVEAU : %d", jeu.niveau_actuel);
 }
-    //Vicoitre Contrat rempli 
-    //Défaite Temps écoulé 
-    //Défaite Aucun coups restant 
-    //Défaite Plus de vies
-	// Affiche un message de fin selon si on a gagné ou perdu
-void afficherEcranFin(int resultat) {
-    system("cls"); 
-    Gotoxy(20, 10);
-    printf("========================================");
-
-    Gotoxy(35, 12); // le millieu du cadre 
-
-    if (resultat == 1) { // SI Victoire
-        Color(10, 0); // Vert fluo
-        printf("BRAVO ! NIVEAU REUSSI !");
-    } 
-    else { // SI DEFAITE 
-        Color(12, 0); // Rouge 
-        printf("GAME OVER...");
-        
-        Gotoxy(30, 16);
-        Color(15, 0);
-        if (resultat == -1) printf("Raison : Temps ecoule !");
-        if (resultat == -2) printf("Raison : Plus de coups !");
-        if (resultat == -3) printf("Raison : Plus de vies !");
-    }
-
-    Gotoxy(25, 20);
-    Color(15, 0);
-    printf("Appuyez sur une touche pour quitter...");
-    getchar(); getchar(); 
-}
-
 
 //ASCII ART
 //ASCII ART
@@ -261,49 +228,49 @@ void ecranAcceuil() {
 
 	int x = x_depart;
 	Color(12, 0), //rouge rouge      
-	Gotoxy(x, y); printf("██████");
+	Gotoxy(x, y); printf("  ██████");
 	Gotoxy(x, y+1); printf("██▄▄  ");
 	Gotoxy(x, y+2); printf("██▄▄▄▄");
 	x += espacement;
 	Color(4, 0), //rouge bresson
-	Gotoxy(x, y); printf("▄█████");
+	Gotoxy(x, y); printf("  ▄█████");
 	Gotoxy(x, y+1); printf("██    ");
 	Gotoxy(x, y+2); printf("▀█████");
 	x += espacement;
 	Color(6, 0), //orange
-	Gotoxy(x, y); printf("██████");
+	Gotoxy(x, y); printf("  ██████");
 	Gotoxy(x, y+1); printf("██▄▄  ");
 	Gotoxy(x, y+2); printf("██▄▄▄▄");
 	x += 4; //espace
 	
 	x += espacement;
 	Color(14, 0), //jaune jaune       
-	Gotoxy(x, y); printf("██  ██");
+	Gotoxy(x, y); printf("  ██  ██");
 	Gotoxy(x, y+1); printf("██████");
 	Gotoxy(x, y+2); printf("██  ██");
 	x += espacement;
 	Color(10, 0), //vert vert
-	Gotoxy(x, y); printf("██████");
+	Gotoxy(x, y); printf("  ██████");
 	Gotoxy(x, y+1); printf("██▄▄  ");
 	Gotoxy(x, y+2); printf("██▄▄▄▄");
 	x += espacement;
 	Color(2, 0), //vert bresson   
-	Gotoxy(x, y); printf("█████▄ ");
+	Gotoxy(x, y); printf("  █████▄ ");
 	Gotoxy(x, y+1); printf("██▄▄██▄");
 	Gotoxy(x, y+2); printf("██   ██");
 	x += espacement;
 	Color(11, 0), //cyan       
-	Gotoxy(x, y); printf("▄████▄");
+	Gotoxy(x, y); printf("  ▄████▄");
 	Gotoxy(x, y+1); printf("██  ██");
 	Gotoxy(x, y+2); printf("▀████▀");
 	x += espacement;
 	Color(9, 0), //bleu bien bleu
-	Gotoxy(x, y); printf("██████");
+	Gotoxy(x, y); printf("  ██████");
 	Gotoxy(x, y+1); printf("██▄▄  ");
 	Gotoxy(x, y+2); printf("██▄▄▄");
 	x += espacement;
 	Color(13, 0), //violet
-  	Gotoxy(x, y); printf("▄█████");
+  	Gotoxy(x, y); printf("  ▄█████");
 	Gotoxy(x, y+1); printf("▀▀▀▄▄▄");
 	Gotoxy(x, y+2); printf("█████▀");
 
@@ -315,7 +282,7 @@ void ecranAcceuil() {
 
 	int visible = 1;
 	Color(14,0);
-	//kbhit = keyboardhit donc !kbhit c'est l'inverse
+	//kbhit = keyboardhit donc !kbhit c'est l'inverse (donc tant qu'aucune touche du clavier n'est pressé)
 	while(!kbhit()) {
         Gotoxy(35, y + 3);
         if (visible)
