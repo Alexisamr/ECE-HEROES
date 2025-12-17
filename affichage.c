@@ -256,41 +256,41 @@ void afficherEcranFin(int resultat) {
 void ecranAcceuil() {   
 
        
-	Color(15, 0), //      
+	Color(12, 0), //rouge rouge      
 	Gotoxy(x, y); printf("██████");
 	Gotoxy(x, y); printf("██▄▄  ");
 	Gotoxy(x, y); printf("██▄▄▄▄");
-	Color(15, 0), //
+	Color(4, 0), //rouge bresson
 	Gotoxy(x, y); printf("▄█████");
 	Gotoxy(x, y); printf("██    ");
 	Gotoxy(x, y); printf("▀█████");
-	Color(15, 0), //
+	Color(6, 0), //orange
 	Gotoxy(x, y); printf("██████");
 	Gotoxy(x, y); printf("██▄▄  ");
 	Gotoxy(x, y); printf("██▄▄▄▄");
 
 
-	Color(15, 0), //       
+	Color(14, 0), //jaune jaune       
 	Gotoxy(x, y); printf("██  ██");
 	Gotoxy(x, y); printf("██████");
 	Gotoxy(x, y); printf("██  ██");
-	Color(15, 0), //
+	Color(10, 0), //vert vert
 	Gotoxy(x, y); printf("██████");
 	Gotoxy(x, y); printf("██▄▄  ");
 	Gotoxy(x, y); printf("██▄▄▄▄");
-	Color(15, 0), //   
+	Color(2, 0), //vert bresson   
 	Gotoxy(x, y); printf("█████▄ ");
 	Gotoxy(x, y); printf("██▄▄██▄");
 	Gotoxy(x, y); printf("██   ██");
-	Color(15, 0), //      
+	Color(11, 0), //cyan       
 	Gotoxy(x, y); printf("▄████▄");
 	Gotoxy(x, y); printf("██  ██");
 	Gotoxy(x, y); printf("▀████▀");
-	Color(15, 0), //
+	Color(9, 0), //bleu bien bleu
 	Gotoxy(x, y); printf("██████");
 	Gotoxy(x, y); printf("██▄▄  ");
 	Gotoxy(x, y); printf("██▄▄▄");
-	Color(15, 0), //  
+	Color(13, 0), //violet
 	Gotoxy(x, y); printf("▄█████");
 	Gotoxy(x, y); printf("▀▀▀▄▄▄");
 	Gotoxy(x, y); printf("█████▀");
