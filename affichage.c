@@ -256,27 +256,87 @@ void afficherEcranFin(int resultat) {
 //ASCII ART
 
 
-void ecranAcceuil() {                                                                 
-                                                                  
-██████ ▄█████ ██████   ██  ██ ██████ █████▄  ▄████▄ ██████ ▄█████ 
-██▄▄   ██     ██▄▄     ██████ ██▄▄   ██▄▄██▄ ██  ██ ██▄▄   ▀▀▀▄▄▄ 
-██▄▄▄▄ ▀█████ ██▄▄▄▄   ██  ██ ██▄▄▄▄ ██   ██ ▀████▀ ██▄▄▄▄ █████▀ 
-                                                                                                                                                                                                                                                                                                    
+void ecranAcceuil() {   
+
+       
+	Color(15, 0), //      
+	Gotoxy(x, y); printf("██████");
+	Gotoxy(x, y); printf("██▄▄  ");
+	Gotoxy(x, y); printf("██▄▄▄▄");
+	Color(15, 0), //
+	Gotoxy(x, y); printf("▄█████");
+	Gotoxy(x, y); printf("██    ");
+	Gotoxy(x, y); printf("▀█████");
+	Color(15, 0), //
+	Gotoxy(x, y); printf("██████");
+	Gotoxy(x, y); printf("██▄▄  ");
+	Gotoxy(x, y); printf("██▄▄▄▄");
+
+
+	Color(15, 0), //       
+	Gotoxy(x, y); printf("██  ██");
+	Gotoxy(x, y); printf("██████");
+	Gotoxy(x, y); printf("██  ██");
+	Color(15, 0), //
+	Gotoxy(x, y); printf("██████");
+	Gotoxy(x, y); printf("██▄▄  ");
+	Gotoxy(x, y); printf("██▄▄▄▄");
+	Color(15, 0), //   
+	Gotoxy(x, y); printf("█████▄ ");
+	Gotoxy(x, y); printf("██▄▄██▄");
+	Gotoxy(x, y); printf("██   ██");
+	Color(15, 0), //      
+	Gotoxy(x, y); printf("▄████▄");
+	Gotoxy(x, y); printf("██  ██");
+	Gotoxy(x, y); printf("▀████▀");
+	Color(15, 0), //
+	Gotoxy(x, y); printf("██████");
+	Gotoxy(x, y); printf("██▄▄  ");
+	Gotoxy(x, y); printf("██▄▄▄");
+	Color(15, 0), //  
+	Gotoxy(x, y); printf("▄█████");
+	Gotoxy(x, y); printf("▀▀▀▄▄▄");
+	Gotoxy(x, y); printf("█████▀");
+
+	// sous titre 
+	Color(15, 0); 
+	Gotoxy(x, y);
+	printf("PROJET ECE HEROES - ING1 par ALEXIS, RUBEN, ROMEO, NICOLAS\n"
+	Gotoxy(x, y);
+	Color(15, 0); printf(">>> APPUYEZ POUR COMMENCER <<<");
+	return proute;                                                                                                                                                                                                                                                                                                    
 }
 
-int afficherEcranVictoire(){                      
-                                                 
-██  ██ ██ ▄█████ ██████ ▄████▄ ██ █████▄  ██████ 
-██▄▄██ ██ ██       ██   ██  ██ ██ ██▄▄██▄ ██▄▄   
- ▀██▀  ██ ▀█████   ██   ▀████▀ ██ ██   ██ ██▄▄▄▄ 
+int afficherEcranVictoire(){          
+	system("cls");
+	
+	int x = 65; int y = 10;
+	Color(14, 0); // Or
+	Gotoxy(x, y);      printf("      ___________      ");
+	Gotoxy(x, y);    printf("     '._==_==_=_.'     ");
+	Gotoxy(x, y);    printf("     .-\\:      /-.     ");
+	Gotoxy(x, y);    printf("    | (|:.     |) |    ");
+	Gotoxy(x, y);    printf("     '-|:.     |-'     ");
+	Gotoxy(x, y);    printf("       \\::.    /       ");
+	Gotoxy(x, y);    printf("        '::. .'        ");
+    Gotoxy(x, y);    printf("          ) (          ");
+    Gotoxy(x, y);    printf("        _.' '._        ");
+    Gotoxy(x, y);    printf("       ~~~~~~~~~     ");
+
+	Color(10, 0); //rouge
+	Gotoxy(x, y); printf("██  ██ ██ ▄█████ ██████ ▄████▄ ██ █████▄  ██████ ");
+	Gotoxy(x, y); printf("██▄▄██ ██ ██       ██   ██  ██ ██ ██▄▄██▄ ██▄▄   ");
+	Gotoxy(x, y); printf(" ▀██▀  ██ ▀█████   ██   ▀████▀ ██ ██   ██ ██▄▄▄▄ \n\n");
                                                  
 }
 
-int afficherEcranDefaite(){                                                    
-                                                              
- ▄████  ▄████▄ ██▄  ▄██ ██████   ▄████▄ ██  ██ ██████ █████▄  
-██  ▄▄▄ ██▄▄██ ██ ▀▀ ██ ██▄▄     ██  ██ ██▄▄██ ██▄▄   ██▄▄██▄ 
- ▀███▀  ██  ██ ██    ██ ██▄▄▄▄   ▀████▀  ▀██▀  ██▄▄▄▄ ██   ██ 
+int afficherEcranDefaite(){
+	system("cls");
+	
+	Color(12, 0); //vert
+	Gotoxy(x, y); printf(" ▄████  ▄████▄ ██▄  ▄██ ██████   ▄████▄ ██  ██ ██████ █████▄  ");
+	Gotoxy(x, y); printf("██  ▄▄▄ ██▄▄██ ██ ▀▀ ██ ██▄▄     ██  ██ ██▄▄██ ██▄▄   ██▄▄██▄ ");
+	Gotoxy(x, y); printf(" ▀███▀  ██  ██ ██    ██ ██▄▄▄▄   ▀████▀  ▀██▀  ██▄▄▄▄ ██   ██ \n\n");
                                                                                                                          
 }
 
