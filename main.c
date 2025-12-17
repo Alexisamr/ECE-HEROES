@@ -1,5 +1,7 @@
 #include "projet.h"
 
+//un déplacement du joueur peu provoquer un seul ou plusieurs changements donc il va falloir fonctionner en vagues qui verfiie qu'il n'y pas de déstruction possible 
+
 int main() {
     //ça c'est pour l'aléatoire besoin de le mettre une seule fois 
     srand(time(NULL));
