@@ -5,6 +5,8 @@
 int main() {
     //ça c'est pour l'aléatoire besoin de le mettre une seule fois 
     srand(time(NULL));
+	//passage en affichage UTF - 8 pour pouvori afficher le texte stylé
+	SetConsoleOutputCP(65001);
 
     t_jeu maPartie; 
     int choix;
