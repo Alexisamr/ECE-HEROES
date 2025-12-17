@@ -254,84 +254,121 @@ void afficherEcranFin(int resultat) {
 
 
 void ecranAcceuil() {   
+	system("cls");
+	int x_depart = 10;
+    int y = 5;
+    int espacement = 8; //pour les espacement entre chaque lettre
 
-       
+	int x = x_depart;
 	Color(12, 0), //rouge rouge      
 	Gotoxy(x, y); printf("██████");
-	Gotoxy(x, y); printf("██▄▄  ");
-	Gotoxy(x, y); printf("██▄▄▄▄");
+	Gotoxy(x, y+1); printf("██▄▄  ");
+	Gotoxy(x, y+2); printf("██▄▄▄▄");
+	x += espacement;
 	Color(4, 0), //rouge bresson
 	Gotoxy(x, y); printf("▄█████");
-	Gotoxy(x, y); printf("██    ");
-	Gotoxy(x, y); printf("▀█████");
+	Gotoxy(x, y+1); printf("██    ");
+	Gotoxy(x, y+2); printf("▀█████");
+	x += espacement;
 	Color(6, 0), //orange
 	Gotoxy(x, y); printf("██████");
-	Gotoxy(x, y); printf("██▄▄  ");
-	Gotoxy(x, y); printf("██▄▄▄▄");
-
-
+	Gotoxy(x, y+1); printf("██▄▄  ");
+	Gotoxy(x, y+2); printf("██▄▄▄▄");
+	x += 4; //espace
+	
+	x += espacement;
 	Color(14, 0), //jaune jaune       
 	Gotoxy(x, y); printf("██  ██");
-	Gotoxy(x, y); printf("██████");
-	Gotoxy(x, y); printf("██  ██");
+	Gotoxy(x, y+1); printf("██████");
+	Gotoxy(x, y+2); printf("██  ██");
+	x += espacement;
 	Color(10, 0), //vert vert
 	Gotoxy(x, y); printf("██████");
-	Gotoxy(x, y); printf("██▄▄  ");
-	Gotoxy(x, y); printf("██▄▄▄▄");
+	Gotoxy(x, y+1); printf("██▄▄  ");
+	Gotoxy(x, y+2); printf("██▄▄▄▄");
+	x += espacement;
 	Color(2, 0), //vert bresson   
 	Gotoxy(x, y); printf("█████▄ ");
-	Gotoxy(x, y); printf("██▄▄██▄");
-	Gotoxy(x, y); printf("██   ██");
+	Gotoxy(x, y+1); printf("██▄▄██▄");
+	Gotoxy(x, y+2); printf("██   ██");
+	x += espacement;
 	Color(11, 0), //cyan       
 	Gotoxy(x, y); printf("▄████▄");
-	Gotoxy(x, y); printf("██  ██");
-	Gotoxy(x, y); printf("▀████▀");
+	Gotoxy(x, y+1); printf("██  ██");
+	Gotoxy(x, y+2); printf("▀████▀");
+	x += espacement;
 	Color(9, 0), //bleu bien bleu
 	Gotoxy(x, y); printf("██████");
-	Gotoxy(x, y); printf("██▄▄  ");
-	Gotoxy(x, y); printf("██▄▄▄");
+	Gotoxy(x, y+1); printf("██▄▄  ");
+	Gotoxy(x, y+2); printf("██▄▄▄");
+	x += espacement;
 	Color(13, 0), //violet
-	Gotoxy(x, y); printf("▄█████");
-	Gotoxy(x, y); printf("▀▀▀▄▄▄");
-	Gotoxy(x, y); printf("█████▀");
+  	Gotoxy(x, y); printf("▄█████");
+	Gotoxy(x, y+1); printf("▀▀▀▄▄▄");
+	Gotoxy(x, y+2); printf("█████▀");
 
 	// sous titre 
-	Color(15, 0); 
-	Gotoxy(x, y);
-	printf("PROJET ECE HEROES - ING1 par ALEXIS, RUBEN, ROMEO, NICOLAS\n"
-	Gotoxy(x, y);
-	Color(15, 0); printf(">>> APPUYEZ POUR COMMENCER <<<");                                                                                                                                                                                                                                                                                                  
+	y += 5
+	Color(15, 0);
+	Gotoxy(20, y);
+	printf("PROJET ECE HEROES - ING1 par ALEXIS, RUBEN, ROMEO, NICOLAS");
+
+	int visible = 1;
+	Color(14,0);
+	//kbhit = keyboardhit donc !kbhit c'est l'inverse
+	while(!kbhit()) {
+        Gotoxy(35, y + 3);
+        if (visible)
+            printf(">>> APPUYEZ POUR COMMENCER <<<");
+        else //ça alterne entre les deux
+            printf("                              "); // Efface
+        
+        visible = !visible;
+        Sleep(500); // 0.5 sec
+    }
+    getch(); //vide la touche appuyé                                                                                                                                                                                                                                                                                               
 }
 
 void afficherEcranVictoire(){          
 	system("cls");
-	int x = 65; int y = 10;
+	int x = 40; int y = 5;
 	Color(14, 0); // Or
-	Gotoxy(x, y);      printf("   ______________      ");
-	Gotoxy(x, y);    printf("     '._==_==_=_.'     ");
-	Gotoxy(x, y);    printf("     .-\\:      /-.     ");
-	Gotoxy(x, y);    printf("    | (|:.     |) |    ");
-	Gotoxy(x, y);    printf("     '-|:.     |-'     ");
-	Gotoxy(x, y);    printf("       \\::.    /       ");
-	Gotoxy(x, y);    printf("        '::. .'        ");
-    Gotoxy(x, y);    printf("          ) (          ");
-    Gotoxy(x, y);    printf("        _.' '._        ");
-    Gotoxy(x, y);    printf("       ¨¨¨¨¨¨¨¨¨    ");
+	Gotoxy(x, y++);      printf("   ______________      ");
+	Gotoxy(x, y++);    printf("     '._==_==_=_.'     ");
+	Gotoxy(x, y++);    printf("     .-\\:      /-.     ");
+	Gotoxy(x, y++);    printf("    | (|:.     |) |    ");
+	Gotoxy(x, y++);    printf("     '-|:.     |-'     ");
+	Gotoxy(x, y++);    printf("       \\::.   /       ");
+	Gotoxy(x, y++);    printf("        '::. .'        ");
+    Gotoxy(x, y++);    printf("          ) (          ");
+    Gotoxy(x, y++);    printf("        _.' '._        ");
+    Gotoxy(x, y++);    printf("       mmmmmmmmm    ");
 
+	y += 2;
+	x = 15;
 	Color(10, 0); //vert
-	Gotoxy(x, y); printf("██  ██ ██ ▄█████ ██████ ▄████▄ ██ █████▄  ██████ ");
-	Gotoxy(x, y); printf("██▄▄██ ██ ██       ██   ██  ██ ██ ██▄▄██▄ ██▄▄   ");
-	Gotoxy(x, y); printf(" ▀██▀  ██ ▀█████   ██   ▀████▀ ██ ██   ██ ██▄▄▄▄ \n\n");
-                                                 
+	Gotoxy(x, y++); printf("██  ██ ██ ▄█████ ██████ ▄████▄ ██ █████▄  ██████ ");
+	Gotoxy(x, y++); printf("██▄▄██ ██ ██       ██   ██  ██ ██ ██▄▄██▄ ██▄▄   ");
+	Gotoxy(x, y++); printf(" ▀██▀  ██ ▀█████   ██   ▀████▀ ██ ██   ██ ██▄▄▄▄ ");
+	Color(15, 0);
+    Gotoxy(35, y + 4);
+    printf("Appuyez sur une touche pour quitter...");
+    getch();
 }
 
 void afficherEcranDefaite(){
 	system("cls");
+	int x = 15;
+	int y = 10;
+	
 	Color(12, 0); //rouge
-	Gotoxy(x, y); printf(" ▄████  ▄████▄ ██▄  ▄██ ██████   ▄████▄ ██  ██ ██████ █████▄  ");
-	Gotoxy(x, y); printf("██  ▄▄▄ ██▄▄██ ██ ▀▀ ██ ██▄▄     ██  ██ ██▄▄██ ██▄▄   ██▄▄██▄ ");
-	Gotoxy(x, y); printf(" ▀███▀  ██  ██ ██    ██ ██▄▄▄▄   ▀████▀  ▀██▀  ██▄▄▄▄ ██   ██ \n\n");
-                                                                                                                         
+	Gotoxy(x, y++); printf(" ▄████  ▄████▄ ██▄  ▄██ ██████   ▄████▄ ██  ██ ██████ █████▄  ");
+	Gotoxy(x, y++); printf("██  ▄▄▄ ██▄▄██ ██ ▀▀ ██ ██▄▄     ██  ██ ██▄▄██ ██▄▄   ██▄▄██▄ ");
+	Gotoxy(x, y++); printf(" ▀███▀  ██  ██ ██    ██ ██▄▄▄▄   ▀████▀  ▀██▀  ██▄▄▄▄ ██   ██ \n\n");
+	Color(15, 0);
+    Gotoxy(35, y + 4);
+    printf("Appuyez sur une touche pour quitter...");
+    getch();
 }
 
 
