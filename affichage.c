@@ -3,6 +3,10 @@
 #include <windows.h>
 #include "projet.h"
 
+int afficherRegles(){
+	
+}
+
 void Gotoxy(int x, int y) { // c'est le truc qui permet de faire une fenêtre et de bouger le cruser tout ça grâce à <windows.h>
     COORD c;
     c.X = x;
@@ -42,6 +46,7 @@ void afficherRegles() {
 	printf("██     ██████ ▄█████   █████▄  ██████  ▄████  ██     ██████ ▄█████");
 	printf("██     ██▄▄   ▀▀▀▄▄▄   ██▄▄██▄ ██▄▄   ██  ▄▄▄ ██     ██▄▄   ▀▀▀▄▄▄");
 	printf("██████ ██▄▄▄▄ █████▀   ██   ██ ██▄▄▄▄  ▀███▀  ██████ ██▄▄▄▄ █████▀\n\n");
+
     printf("BUT DU JEU : ");
 	printf("- Alignez 3 symboles identiques pour les détruire et marquer des points"); //le but du jeu, les contraintes, les figures spéciales, les contrôles
     printf("- Remplissez le CONTRAT avant la fin du temps imparti !\n\n");
