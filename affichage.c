@@ -307,7 +307,7 @@ void afficherEcranVictoire(){
 	system("cls");
 	int x = 65; int y = 10;
 	Color(14, 0); // Or
-	Gotoxy(x, y);      printf("      ___________      ");
+	Gotoxy(x, y);      printf("   ______________      ");
 	Gotoxy(x, y);    printf("     '._==_==_=_.'     ");
 	Gotoxy(x, y);    printf("     .-\\:      /-.     ");
 	Gotoxy(x, y);    printf("    | (|:.     |) |    ");
