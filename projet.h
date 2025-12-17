@@ -23,7 +23,9 @@ typedef struct { //ça c'est pour toi ruben
 // TOUTES LES FONCTIONS 
 
 int afficherMenu();
-void afficherTitre();
+void afficherAcceuil();
+void afficherEcranVictoire();
+void afficherEcranDefaite();
 void afficherRegles();
 void afficherTemps(t_jeu jeu);
 void afficherVieJoueur(t_jeu jeu);
