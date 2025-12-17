@@ -318,7 +318,7 @@ int afficherEcranVictoire(){
 	Gotoxy(x, y);    printf("        '::. .'        ");
     Gotoxy(x, y);    printf("          ) (          ");
     Gotoxy(x, y);    printf("        _.' '._        ");
-    Gotoxy(x, y);    printf("       ~~~~~~~~~     ");
+    Gotoxy(x, y);    printf("       ¨¨¨¨¨¨¨¨¨    ");
 
 	Color(10, 0); //rouge
 	Gotoxy(x, y); printf("██  ██ ██ ▄█████ ██████ ▄████▄ ██ █████▄  ██████ ");
