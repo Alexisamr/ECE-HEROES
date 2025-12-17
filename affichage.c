@@ -19,9 +19,10 @@ int afficherMenu() {
 	system("cls");
 	Color(15, 0);
 	int choix;
-	printf("************************************\n");
-    printf("         ECE HEROES-MENU             \n");
-    printf("************************************\n\n");
+	printf("██▄  ▄██ ██████ ███  ██ ██  ██ ");
+	printf("██ ▀▀ ██ ██▄▄   ██ ▀▄██ ██  ██ ");
+	printf("██    ██ ██▄▄▄▄ ██   ██ ▀████▀ \n\n");
+	
 	printf("1. Afficher les regles du jeu\n");
 	printf("2. Nouvelle partie\n");
 	printf("3. Reprendre une partie\n");
@@ -38,7 +39,9 @@ int afficherMenu() {
 void afficherRegles() {
     system("cls");
     afficherTitre();
-    printf("\n --- LES REGLES --- \n\n"); // à finir faut que bien que je vérifie les regles mais je pense c'est ça 
+	printf("██     ██████ ▄█████   █████▄  ██████  ▄████  ██     ██████ ▄█████");
+	printf("██     ██▄▄   ▀▀▀▄▄▄   ██▄▄██▄ ██▄▄   ██  ▄▄▄ ██     ██▄▄   ▀▀▀▄▄▄");
+	printf("██████ ██▄▄▄▄ █████▀   ██   ██ ██▄▄▄▄  ▀███▀  ██████ ██▄▄▄▄ █████▀\n\n");
     printf("BUT DU JEU : ");
 	printf("- Alignez 3 symboles identiques pour les détruire et marquer des points"); //le but du jeu, les contraintes, les figures spéciales, les contrôles
     printf("- Remplissez le CONTRAT avant la fin du temps imparti !\n\n");
@@ -246,19 +249,6 @@ void afficherEcranFin(int resultat) {
 
 //ASCII ART
 //ASCII ART
-
-                               
-                               
-██▄  ▄██ ██████ ███  ██ ██  ██ 
-██ ▀▀ ██ ██▄▄   ██ ▀▄██ ██  ██ 
-██    ██ ██▄▄▄▄ ██   ██ ▀████▀ 
-
-                                                                   
-                                                                   
-██     ██████ ▄█████   █████▄  ██████  ▄████  ██     ██████ ▄█████ 
-██     ██▄▄   ▀▀▀▄▄▄   ██▄▄██▄ ██▄▄   ██  ▄▄▄ ██     ██▄▄   ▀▀▀▄▄▄ 
-██████ ██▄▄▄▄ █████▀   ██   ██ ██▄▄▄▄  ▀███▀  ██████ ██▄▄▄▄ █████▀ 
-
 
 
 void ecranAcceuil() {                                                                 
