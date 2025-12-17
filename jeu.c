@@ -1,9 +1,13 @@
+#include "projet.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define N 5
-#define P 10
+//#define N 5
+//#define P 10 D'après ce  que j'ai acpté d'abord faut supprimer ces variables elles sont déjà les bonne dans le headers et 
+// donc remplacer tout les N et P par [LIGNES] [COLONNES]
 
+//Note pour Ruben : Dans ses fonctions detectionsuite..., il y a des variables comme count ou compteur() (comme une fonction) 
+//qui ne sont pas déclarées. Il faudra qu'il relise son code pour corriger ces erreurs de syntaxe, sinon ça ne compilera pas.
 void initialisationplateau(int tab[N][P]) {
 	int i, j;
 	for (i = 0; i < N; i++) {
