@@ -82,6 +82,30 @@ void afficherScore(t_jeu jeu){
     Color(15, 0); // et hop on remet blanco
 }
 
+void afficherMessageViePerdue(int vies_restantes) {
+	// le message doit apparaitre juste en dessous rapidement 
+    int x_msg = 15; 
+    int y_msg = 32; 
+
+    // rouge 
+    Color(12, 0); 
+    Gotoxy(x_msg, y_msg);
+    printf(">> Vous avez perdu une VIE !");
+
+    Color(15, 0);
+    Gotoxy(x_msg, y_msg + 1);
+    printf(">> Attention : il ne vous reste plus que %d vies !", vies_restantes);
+
+	// pause de 1,5s pour que le joueur lise
+    Sleep(1500);
+
+	// et on efface
+    Gotoxy(x_msg, y_msg);
+    printf("                                                  "); 
+    Gotoxy(x_msg, y_msg + 1);
+    printf("                                                  "); 
+}
+
 void afficherGrille(t_jeu jeu, int curseurX, int curseurY, int selectionActive) {
     // grille soit centrée et pas collée au bord
     int x_depart = 15; 
