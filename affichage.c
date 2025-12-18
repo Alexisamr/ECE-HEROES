@@ -251,55 +251,55 @@ void ecranAcceuil() {
     int espacement = 8; //pour les espacement entre chaque lettre
 
 	int x = x_depart;
-	Color(12, 0), //rouge rouge      
+	Color(12, 0); //rouge rouge      
 	Gotoxy(x, y); printf("  ██████");
 	Gotoxy(x, y+1); printf("██▄▄  ");
 	Gotoxy(x, y+2); printf("██▄▄▄▄");
 	x += espacement;
-	Color(4, 0), //rouge bresson
+	Color(4, 0); //rouge bresson
 	Gotoxy(x, y); printf("  ▄█████");
 	Gotoxy(x, y+1); printf("██    ");
 	Gotoxy(x, y+2); printf("▀█████");
 	x += espacement;
-	Color(6, 0), //orange
+	Color(6, 0); //orange
 	Gotoxy(x, y); printf("  ██████");
 	Gotoxy(x, y+1); printf("██▄▄  ");
 	Gotoxy(x, y+2); printf("██▄▄▄▄");
 	x += 4; //espace
 	
 	x += espacement;
-	Color(14, 0), //jaune jaune       
+	Color(14, 0); //jaune jaune       
 	Gotoxy(x, y); printf("  ██  ██");
 	Gotoxy(x, y+1); printf("██████");
 	Gotoxy(x, y+2); printf("██  ██");
 	x += espacement;
-	Color(10, 0), //vert vert
+	Color(10, 0); //vert vert
 	Gotoxy(x, y); printf("  ██████");
 	Gotoxy(x, y+1); printf("██▄▄  ");
 	Gotoxy(x, y+2); printf("██▄▄▄▄");
 	x += espacement;
-	Color(2, 0), //vert bresson   
+	Color(2, 0); //vert bresson   
 	Gotoxy(x, y); printf("  █████▄ ");
 	Gotoxy(x, y+1); printf("██▄▄██▄");
 	Gotoxy(x, y+2); printf("██   ██");
 	x += espacement;
-	Color(11, 0), //cyan       
+	Color(11, 0); //cyan       
 	Gotoxy(x, y); printf("  ▄████▄");
 	Gotoxy(x, y+1); printf("██  ██");
 	Gotoxy(x, y+2); printf("▀████▀");
 	x += espacement;
-	Color(9, 0), //bleu bien bleu
+	Color(9, 0); //bleu bien bleu
 	Gotoxy(x, y); printf("  ██████");
 	Gotoxy(x, y+1); printf("██▄▄  ");
 	Gotoxy(x, y+2); printf("██▄▄▄");
 	x += espacement;
-	Color(13, 0), //violet
+	Color(13, 0); //violet
   	Gotoxy(x, y); printf("  ▄█████");
 	Gotoxy(x, y+1); printf("▀▀▀▄▄▄");
 	Gotoxy(x, y+2); printf("█████▀");
 
 	// sous titre 
-	y += 5
+	y += 5;
 	Color(15, 0);
 	Gotoxy(20, y);
 	printf("PROJET ECE HEROES - ING1 par ALEXIS, RUBEN, ROMEO, NICOLAS");
