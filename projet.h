@@ -29,6 +29,7 @@ void afficherEcranDefaite();
 void afficherRegles();
 void afficherTemps(t_jeu jeu);
 void afficherVieJoueur(t_jeu jeu);
+void afficherMessageViePerdue(int vies_restantes);
 void afficherGrille(t_jeu jeu, int curseurX, int curseurY, int selectionActive);
 
 #endif
