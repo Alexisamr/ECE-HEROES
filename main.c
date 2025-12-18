@@ -2,6 +2,9 @@
 #include <time.h>
 #include <conio.h> // pour getch() et kbhit()
 
+//CE QU'IL FAUT ENCORE FAIRE : 
+//DEFINIR LE CONTRAT ET METTRE A LA PLACE DE ZQSD LES FLECHES DU CLAVIER 
+
 int main() {
     srand(time(NULL));         // pour l'aléatoire
     SetConsoleOutputCP(65001); // pour les caractères spéciaux
@@ -37,8 +40,9 @@ int main() {
                     // initialisation du jeu
                     initialisationplateau(jeu.grille);   
                     remplissagecasesvides(jeu.grille);   
-                    
-                    jeu.temps_restant = 60; 
+
+					int temps_max_niveau = 60;
+                    jeu.temps_restant = temps_max_niveau; 
                     jeu.coups_restants = 20; 
 
 					//départ du chrono
@@ -107,7 +111,7 @@ int main() {
 						//Vérif victoire ...
                         // conditions de fin de niveau (Exemple simple)
                         
-                    }
+                    
 
                     // transition entre niveau
                     if (niveau_perdu) {
