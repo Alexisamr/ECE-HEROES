@@ -1,92 +1,131 @@
 #include "projet.h"
-
-//un déplacement du joueur peu provoquer un seul ou plusieurs changements donc il va falloir fonctionner en vagues qui verfiie qu'il n'y pas de déstruction possible 
+#include <time.h>
+#include <conio.h> // pour getch() et kbhit()
 
 int main() {
-    //ça c'est pour l'aléatoire besoin de le mettre une seule fois 
-    srand(time(NULL));
-	//passage en affichage UTF - 8 pour pouvori afficher le texte stylé
-	SetConsoleOutputCP(65001);
+    srand(time(NULL));         // pour l'aléatoire
+    SetConsoleOutputCP(65001); // pour les caractères spéciaux
+    ecranAcceuil(); 
 
-    t_jeu maPartie; 
-    int choix;
-    int fin_du_programme = 0;
+    t_jeu jeu; 
+    int choixMenu;
+    int application_lancee = 1;
 
-    // variables pour le curseur de l'utilisateur 
-    int curseurX = 0;
-    int curseurY = 0;
+    // variables pour lees entrée clavier
+    int curseurX = 0, curseurY = 0, selectionActive = 0;
+    char touche;
 
-    do {
-        choix = afficherMenu();
+    while (application_lancee) {
+        choixMenu = afficherMenu(); 
 
-        switch (choix) {
-            case 1:
+        switch (choixMenu) {
+            case 1: // REGLES
                 afficherRegles();
                 break;
 
-            case 2: // nouvelle partie
-                system("cls"); 
-
-                // on initialise les données
-                initialisationplateau(maPartie.grille);
-                remplissagecasesvides(maPartie.grille);
+            case 2: 
+                // initialisation de la partie 
+                jeu.vies = 3;
+                jeu.score = 0;
+                jeu.niveau_actuel = 1; // on commence niveau 1 (faire les différents niveau quand tout sera terminé)
                 
-                //on initialise les stats du jeu
-                maPartie.vies = 3;
-                maPartie.score = 0;
-                maPartie.temps_restant = 60;
-                maPartie.niveau_actuel = 1;
-                maPartie.coups_restants = 20;
-                //exemple d'un objectif
-                maPartie.objectifs[1] = 10; // 10 items de type 1 à détruire
+                int partie_terminee = 0;
 
-                // le coeur du programme la boucle de jeu 
-                int niveau_en_cours = 1;
-                while (niveau_en_cours) {
+                // tant que le joueur a une vie le jeu continue
+                while (jeu.vies > 0 && partie_terminee == 0) {
                     
-                    //affichage
-                    afficherTitre();
-                    afficherNiveau(maPartie);
-                    afficherVies(maPartie);
-                    afficherScore(maPartie);
-                    afficherTemps(maPartie);
-                    afficherCoups(maPartie);
-                    afficherContrat(maPartie);
+                    // initialisation du jeu
+                    initialisationplateau(jeu.grille);   
+                    remplissagecasesvides(jeu.grille);   
                     
-                    // On passe le curseur pour l'affichage
-                    afficherGrille(maPartie, curseurX, curseurY, 0); 
+                    jeu.temps_restant = 60; 
+                    jeu.coups_restants = 20; 
+                    
+    				// reset des positions
+                    curseurX = 0; curseurY = 0; selectionActive = 0;
 
-                    // B. Gestion des touches (Z,Q,S,D pour bouger)
-                    // C'est ici qu'il faudra ajouter la logique de déplacement
-                    // Pour l'instant on met une pause pour voir l'affichage
-					
-                    Gotoxy(0, LIGNES + 10);
-                    printf("Appuyez sur 'q' pour quitter le niveau...");
-                    char touche = getch(); // Nécessite <conio.h> souvent inclus via windows.h ou à ajouter
-                    if (touche == 'q') niveau_en_cours = 0;
+                    int niveau_gagne = 0;
+                    int niveau_perdu = 0;
 
-                    // logique de jeu (Gravité, destructions...)
-                    // appel des fonctions de ruben ...
-                    // detectionSuite(maPartie.grille);
-                    // gravite(maPartie.grille);
-                    // remplissagecasesvides(maPartie.grille);
+                    // boucle du jeu
+                    while (niveau_gagne == 0 && niveau_perdu == 0) {
+                        
+                        // affichage
+                        afficherNiveau(jeu);
+                        afficherVies(jeu);
+                        afficherScore(jeu);
+                        afficherTemps(jeu);
+                        afficherCoups(jeu);
+                        afficherContrat(jeu); 
+                        afficherGrille(jeu, curseurX, curseurY, selectionActive);
+
+                        // ZQSD
+                        if (kbhit()) {
+                            touche = getch();
+                            if (touche == 'z' && curseurY > 0) curseurY--;
+                            if (touche == 's' && curseurY < LIGNES - 1) curseurY++;
+                            if (touche == 'q' && curseurX > 0) curseurX--;
+                            if (touche == 'd' && curseurX < COLONNES - 1) curseurX++;
+                            
+                            // Sélection
+                            if (touche == ' ') {
+                                if (selectionActive == 0) selectionActive = 1;
+                                else {
+                                    // TODO: Fonction permutation ici
+                                    jeu.coups_restants--; 
+                                    selectionActive = 0;
+                                }
+                            }
+                            
+                            // abondon si touche 'p'
+                            if (touche == 'p') niveau_perdu = 1;
+                        }
+
+                        // 3. LOGIQUE (Ruben)
+                        // detectionSuite(...);
+                        // gravite(...)
+						
+                        Sleep(50); // ralentir la boucle
+                        
+                        // conditions de fin de niveau (Exemple simple)
+                        if (jeu.coups_restants <= 0) niveau_perdu = 1;
+                        // if (contratRempli(jeu)) niveau_gagne = 1;
+                    }
+
+                    // === D. TRANSITION ENTRE NIVEAUX ===
+                    if (niveau_perdu) {
+                        jeu.vies--;
+                        if (jeu.vies == 0) {
+                            afficherEcranDefaite(); // C'est PERDU pour de bon
+                            partie_terminee = 1; // On sort de la boucle de jeu
+                        } else {
+                            // On peut ajouter un petit message "Vie perdue" ici si on veut
+                            // Pas besoin de 'partie_terminee = 1', ça va relancer le while avec vie - 1
+                        }
+                    } 
+                    else if (niveau_gagne) {
+                        jeu.niveau_actuel++;
+                        if (jeu.niveau_actuel > 3) {
+                            afficherEcranVictoire(); 
+                            partie_terminee = 1; // on sort
+                        }
+                    }
                 }
                 break;
 
-            case 3:
-                // reprendrePartie();
+            case 3: // CHARGERRRRR
                 printf("Fonctionnalite a venir !\n");
                 Sleep(1000);
                 break;
-                
-            case 0:
-                fin_du_programme = 1;
+            
+            case 4: // QUITTER
+                application_lancee = 0;
                 break;
         }
-    } while (fin_du_programme == 0);
-
-    return 0;
-
-finPartie{
+    }
     
+    // nettoyage finale (peut être utiliser une fonction pour faire l'affichage de fin stylé 
+    system("cls");
+    printf("Au revoir !\n");
+    return 0;
 }
