@@ -23,7 +23,7 @@ typedef struct { //ça c'est pour toi ruben
 // TOUTES LES FONCTIONS 
 
 int afficherMenu();
-void afficherAcceuil();
+void ecranAcceuil();
 void afficherEcranVictoire();
 void afficherEcranDefaite();
 void afficherRegles();
