@@ -99,7 +99,7 @@ int main() {
                             afficherEcranDefaite(); // C'est PERDU pour de bon
                             partie_terminee = 1; // On sort de la boucle de jeu
                         } else {
-                            // On peut ajouter un petit message "Vie perdue" ici si on veut
+                            afficherMessageViePerdue(jeu.vies);
                             // Pas besoin de 'partie_terminee = 1', ça va relancer le while avec vie - 1
                         }
                     } 
