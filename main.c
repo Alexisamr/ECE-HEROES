@@ -59,7 +59,8 @@ int main() {
     // 1. Initialisation
     srand(time(NULL));
     SetConsoleOutputCP(65001); // UTF-8 pour les accents et symboles
-    
+    system("mode con lines=40 cols=120");
+    cacherCurseur();
     t_jeu jeu;
     char pseudoJoueur[32] = "Joueur"; // Variable locale pour le pseudo
     int application_lancee = 1;
@@ -77,6 +78,8 @@ int main() {
         }
         else if (choixMenu == 1) { // REGLES
             afficherRegles();
+            choixMenu = afficherMenu();
+            
         }
         else if (choixMenu == 2 || choixMenu == 3) { // NOUVELLE PARTIE ou CHARGER
             
@@ -132,6 +135,12 @@ int main() {
                 // Tableau pour la détection des marques (match-3)
                 int marques[LIGNES][COLONNES];
 
+                // AJOUTE CES 3 LIGNES ICI :
+                system("cls"); // On nettoie l'écran UNE SEULE FOIS au début
+                int doit_rafraichir = 1; // Le signal pour dire "Redessine l'écran"
+                int dernier_temps_affiche = -1;
+
+                while (niveau_fini == 0) {
                 // --- BOUCLE DE JEU (FRAME PAR FRAME) ---
                 while (niveau_fini == 0) {
                     
@@ -210,6 +219,13 @@ int main() {
                                 }
                             }
                         }
+                        // Code triche développeur : Quitter instantanément
+                        if (touche == 27) { // 27 correspond à la touche ECHAP
+                            system("cls");
+                            printf("Sortie forcee (Dev Mode)...\n");
+                            exit(0); // Ferme brutalement le programme
+                        }
+
                         // Touche P : Pause / Sauvegarder
                         else if (touche == 'p' || touche == 'P') {
                             niveau_fini = 3; // Code pour sauvegarde
@@ -273,4 +289,5 @@ int main() {
     system("cls");
     printf("Au revoir !\n");
     return 0;
+    }
 }
