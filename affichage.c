@@ -241,6 +241,12 @@ void afficherNiveau(t_jeu jeu) { //pour savoir à quelle niveau en est l'utilisa
     printf("NIVEAU : %d", jeu.niveau_actuel);
 }
 
+void afficherAide() {
+    Gotoxy(0, y_grille + LIGNES + 1);
+    Color(15, 0);
+    printf("Espace=selection/valider | X=annuler | Fleches ou ZQSD | P=sauvegarder+menu                    ");
+}
+
 //ASCII ART
 //ASCII ART
 
