@@ -4,10 +4,6 @@
 #include <conio.h>
 #include "projet.h"
 
-// Définition de sécurité si jamais ce n'est pas dans ton header
-#ifndef NB_TYPES
-#define NB_TYPES 5
-#endif
 
 // --- FONCTIONS UTILITAIRES LOCALES ---
 
