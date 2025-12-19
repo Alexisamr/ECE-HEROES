@@ -27,7 +27,8 @@ int afficherMenu() {
 	printf("1. Afficher les regles du jeu\n");
 	printf("2. Nouvelle partie\n");
 	printf("3. Reprendre une partie\n");
-	printf("Choisissez un mode : ");
+	printf("4. Quitter");
+	printf("Choisissez un mode entre 1 et 4 : ");
 	scanf("%d", &choix);
 	while(choix < 1 || choix > 3){
 		printf("Choissisez un menu entre 1 et 3 :");
@@ -40,16 +41,16 @@ int afficherMenu() {
 void afficherRegles() {
     system("cls");
     afficherTitre();
-	printf("██     ██████ ▄█████   █████▄  ██████  ▄████  ██     ██████ ▄█████");
-	printf("██     ██▄▄   ▀▀▀▄▄▄   ██▄▄██▄ ██▄▄   ██  ▄▄▄ ██     ██▄▄   ▀▀▀▄▄▄");
-	printf("██████ ██▄▄▄▄ █████▀   ██   ██ ██▄▄▄▄  ▀███▀  ██████ ██▄▄▄▄ █████▀\n\n");
+	Gotoxy(0, 6), printf("██     ██████ ▄█████   █████▄  ██████  ▄████  ██     ██████ ▄█████");
+	Gotoxy(0, 6), printf("██     ██▄▄   ▀▀▀▄▄▄   ██▄▄██▄ ██▄▄   ██  ▄▄▄ ██     ██▄▄   ▀▀▀▄▄▄");
+	Gotoxy(0, 6), printf("██████ ██▄▄▄▄ █████▀   ██   ██ ██▄▄▄▄  ▀███▀  ██████ ██▄▄▄▄ █████▀\n\n");
 
     printf("BUT DU JEU : ");
 	printf("- Alignez 3 symboles identiques pour les détruire et marquer des points"); //le but du jeu, les contraintes, les figures spéciales, les contrôles
     printf("- Remplissez le CONTRAT avant la fin du temps imparti !\n\n");
 	
     printf("COMMANDES : ");
-    printf("- Deplacement : [Z] Haut, [S] Bas, [Q] Gauche, [D] Droite \n");
+    printf("- Les deplacement se font avec les fléches de votre clavier en bas à droite\n");
 	printf("- [ESPACE] pour selectionner et echanger deux cases. \n\n");
 	
     printf("BONUS & DEFAITE :\n"); 
