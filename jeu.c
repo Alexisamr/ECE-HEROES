@@ -330,3 +330,157 @@ int sauvegarderSauvegarde(const char *pseudo, int niveau, int vies, int score) {
     fclose(f);
     return 1;
 }
+
+// ==================== STRUCTURES ====================
+
+typedef struct {
+    int type;        // Type d'objectif (ex: 1=détruire X bonbons rouges, 2=atteindre X points, etc.)
+    int target;      // Nombre à atteindre pour compléter l'objectif
+    int current;     // Progression actuelle
+} Objective;
+
+typedef struct {
+    int number;           // Numéro du niveau
+    int moves_limit;      // Nombre de coups maximum
+    int moves_used;       // Coups utilisés
+    Objective objective;  // Objectif à compléter
+    int completed;        // 1 si complété, 0 sinon
+} Level;
+
+typedef struct {
+    int lives;           // Nombre de vies actuelles
+    int max_lives;       // Nombre maximum de vies
+    int current_level;   // Niveau actuel du joueur
+} Player;
+
+// ==================== VARIABLES GLOBALES ====================
+
+Player player;
+Level levels[100];  // Tableau pour stocker jusqu'à 100 niveaux
+int total_levels = 0;
+
+// ==================== FONCTIONS DE BASE ====================
+
+// Initialiser le joueur
+void init_player(int starting_lives, int max_lives) {
+    player.lives = starting_lives;
+    player.max_lives = max_lives;
+    player.current_level = 1;
+}
+
+// Créer un nouveau niveau
+void create_level(int level_num, int moves, int obj_type, int obj_target) {
+    if (total_levels >= 100) {
+        printf("Erreur: Nombre maximum de niveaux atteint!\n");
+        return;
+    }
+    
+    levels[total_levels].number = level_num;
+    levels[total_levels].moves_limit = moves;
+    levels[total_levels].moves_used = 0;
+    levels[total_levels].objective.type = obj_type;
+    levels[total_levels].objective.target = obj_target;
+    levels[total_levels].objective.current = 0;
+    levels[total_levels].completed = 0;
+    
+    total_levels++;
+}
+
+// ==================== GESTION DES VIES ====================
+
+// Perdre une vie
+int lose_life() {
+    if (player.lives > 0) {
+        player.lives--;
+        printf("Vie perdue! Vies restantes: %d\n", player.lives);
+        return 1;
+    }
+    printf("Game Over! Plus de vies!\n");
+    return 0;
+}
+
+// Gagner une vie
+void gain_life() {
+    if (player.lives < player.max_lives) {
+        player.lives++;
+        printf("Vie gagnée! Vies: %d\n", player.lives);
+    } else {
+        printf("Vies déjà au maximum!\n");
+    }
+}
+
+// Vérifier si le joueur a des vies
+int has_lives() {
+    return player.lives > 0;
+}
+
+// ==================== GESTION DES NIVEAUX ====================
+
+// Obtenir le niveau actuel
+Level* get_current_level() {
+    for (int i = 0; i < total_levels; i++) {
+        if (levels[i].number == player.current_level) {
+            return &levels[i];
+        }
+    }
+    return NULL;
+}
+
+// Incrémenter un coup
+void use_move() {
+    Level* lvl = get_current_level();
+    if (lvl != NULL) {
+        lvl->moves_used++;
+    }
+}
+
+// Mettre à jour la progression de l'objectif
+void update_objective(int progress) {
+    Level* lvl = get_current_level();
+    if (lvl != NULL) {
+        lvl->objective.current += progress;
+        printf("Progression: %d/%d\n", lvl->objective.current, lvl->objective.target);
+    }
+}
+
+// Vérifier si l'objectif est atteint
+int is_objective_completed() {
+    Level* lvl = get_current_level();
+    if (lvl != NULL) {
+        return lvl->objective.current >= lvl->objective.target;
+    }
+    return 0;
+}
+
+// Vérifier si le joueur a dépassé la limite de coups
+int is_out_of_moves() {
+    Level* lvl = get_current_level();
+    if (lvl != NULL) {
+        return lvl->moves_used >= lvl->moves_limit;
+    }
+    return 0;
+}
+
+// Terminer le niveau (appelé à la fin d'une partie)
+int end_level() {
+    Level* lvl = get_current_level();
+    if (lvl == NULL) return 0;
+    
+    // Vérifier si l'objectif est complété
+    if (is_objective_completed()) {
+        lvl->completed = 1;
+        printf("\n=== NIVEAU %d COMPLÉTÉ! ===\n", lvl->number);
+        player.current_level++;
+        return 1;  // Niveau réussi
+    }
+    
+    // Objectif non complété = échec
+    printf("\n=== NIVEAU %d ÉCHOUÉ! ===\n", lvl->number);
+    lose_life();
+    
+    // Réinitialiser le niveau pour réessayer
+    lvl->moves_used = 0;
+    lvl->objective.current = 0;
+    
+    return 0;  // Niveau échoué
+}
