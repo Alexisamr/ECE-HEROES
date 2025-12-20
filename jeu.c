@@ -400,3 +400,54 @@ int sauvegarderSauvegarde(const char *pseudo, int niveau, int vies, int score) {
     fclose(f);
     return 1;
 }
+
+// [EXTENSION] Détecte une forme en L ou en T (5 items)
+// À appeler à l'intérieur de detecterMarques
+void detecterFigureL_T(t_jeu *jeu, int marque[LIGNES][COLONNES]) {
+    int y, x;
+    
+    // On parcourt la grille (en évitant les bords pour ne pas sortir du tableau)
+    for (y = 0; y < LIGNES; y++) {
+        for (x = 0; x < COLONNES; x++) {
+            int val = jeu->grille[y][x];
+            if (val <= 0 || val > NB_TYPES) continue;
+
+            // Détection du T (3 horizontaux + 3 verticaux centrés)
+            //  *
+            // ***
+            //  *
+            if (x > 0 && x < COLONNES - 1 && y > 0 && y < LIGNES - 1) {
+                if (jeu->grille[y][x-1] == val && jeu->grille[y][x+1] == val && // Horizontal
+                    jeu->grille[y-1][x] == val && jeu->grille[y+1][x] == val) { // Vertical
+                    
+                    // Effet : On marque une zone 3x3 autour du centre (Explosion)
+                    int i, j;
+                    for(i = -1; i <= 1; i++) {
+                        for(j = -1; j <= 1; j++) {
+                            marque[y+i][x+j] = 1;
+                        }
+                    }
+                }
+            }
+
+            // Détection du L (Exemple: Coin bas-droit)
+            // *
+            // *
+            // ***
+            if (y >= 2 && x >= 2) {
+                if (jeu->grille[y-1][x] == val && jeu->grille[y-2][x] == val && // Vertical haut
+                    jeu->grille[y][x-1] == val && jeu->grille[y][x-2] == val) { // Horizontal gauche
+                    
+                    // Effet : Explosion en croix sur 3 cases
+                     int k;
+                     for(k=1; k<=3; k++) {
+                         if(y-k >= 0) marque[y-k][x] = 1; // Haut
+                         if(x-k >= 0) marque[y][x-k] = 1; // Gauche
+                     }
+                     marque[y][x] = 1;
+                }
+            }
+            // (Tu peux dupliquer le bloc "L" pour les 3 autres rotations si tu veux être exhaustif)
+        }
+    }
+}
