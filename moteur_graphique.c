@@ -6,11 +6,11 @@ void afficherGrilleGraphique(t_jeu jeu, int curseurX, int curseurY, int selectio
     int startX = 15;
     int startY = 5;
     
-    // Symboles pour chaque type (en strings maintenant)
+    // symboles pour chaque type avec les couleurs 
     char* symboles[] = {" ", "O", "#", "@", "+", "*"};
     int couleurs[] = {8, 12, 10, 14, 11, 13};
     
-    // Cadre du haut
+    // cadre du haut
     Color(15, 0);
     Gotoxy(startX - 1, startY - 1); 
     printf("╔");
@@ -18,7 +18,7 @@ void afficherGrilleGraphique(t_jeu jeu, int curseurX, int curseurY, int selectio
     for(k = 0; k < COLONNES; k++) printf("══");
     printf("╗");
     
-    // Grille
+    // la grille
     int i, j;
     for (i = 0; i < LIGNES; i++) {
         Color(15, 0);
@@ -46,7 +46,7 @@ void afficherGrilleGraphique(t_jeu jeu, int curseurX, int curseurY, int selectio
         printf("║");
     }
     
-    // Cadre du bas
+    // cadre du bas
     Gotoxy(startX - 1, startY + LIGNES);
     printf("╚");
     for(k = 0; k < COLONNES; k++) printf("══");
