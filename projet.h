@@ -77,5 +77,8 @@ void chargerParametresNiveau(int niveau, int objectifs[NB_TYPES], int *coups_max
 // Sauvegarde
 int chargerSauvegarde(const char *pseudo, int *niveau, int *vies, int *score);
 int sauvegarderSauvegarde(const char *pseudo, int niveau, int vies, int score);
+// Moteur graphique (moteur_graphique.c)
+void afficherGrilleGraphique(t_jeu jeu, int curseurX, int curseurY, int selectionActive);
 
 #endif
+
