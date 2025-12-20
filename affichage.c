@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <conio.h>
-#include "projet.h"
+#include <conio.h> // bibliothèque qui permet de gérer en partie les inputs
+#include <windows.h> // bibliothèque qui permet de gérer l'affichage avec Gotoxy et Color notament 
+#include "projet.h" //
 
 void Gotoxy(int x, int y) { // grâce a la bibliothèque windows.h nous pouvons utiliser cette fonction qui permet de décider 
     COORD c;
