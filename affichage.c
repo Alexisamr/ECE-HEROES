@@ -4,19 +4,19 @@
 #include <conio.h>
 #include "projet.h"
 
-void Gotoxy(int x, int y) { // c'est le truc qui permet de faire une fenêtre et de bouger le cruser tout ça grâce à <windows.h>
+void Gotoxy(int x, int y) { // grâce a la bibliothèque windows.h nous pouvons utiliser cette fonction qui permet de décider 
     COORD c;
     c.X = x;
     c.Y = y;
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
 }
 
-void Color(int t, int f) {
+void Color(int t, int f) { // proviens aussi de windows.h et permet les couleurs dans le terminale windows basique 
     HANDLE H = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(H, f * 16 + t);
 }
 
-int afficherMenu() {
+int afficherMenu() { //affichage du menu
 	system("cls");
 	Color(15, 0);
 	int choix;
@@ -32,7 +32,7 @@ int afficherMenu() {
     printf("Choisissez un mode entre 1 et 4 : ");
 	scanf("%d", &choix);
     
-    // CORRECTION ICI : on accepte jusqu'à 4 maintenant
+    //tant que l'utilisateur entre une valeur entre 1 et 4
 	while(choix < 1 || choix > 4){ 
 		printf("Choissisez un menu entre 1 et 4 :");
 		scanf("%d", &choix);
@@ -42,8 +42,8 @@ int afficherMenu() {
 	return choix;
 }
 
-void afficherRegles() {
-    system("cls");
+void afficherRegles() { //affichage des reglages 
+    system("cls"); //clear proprement l'affichage
 	Gotoxy(0, 1), printf("██     ██████ ▄█████   █████▄  ██████  ▄████  ██     ██████ ▄█████");
 	Gotoxy(0, 2), printf("██     ██▄▄   ▀▀▀▄▄▄   ██▄▄██▄ ██▄▄   ██  ▄▄▄ ██     ██▄▄   ▀▀▀▄▄▄");
 	Gotoxy(0, 3), printf("██████ ██▄▄▄▄ █████▀   ██   ██ ██▄▄▄▄  ▀███▀  ██████ ██▄▄▄▄ █████▀\n\n");
@@ -63,16 +63,14 @@ void afficherRegles() {
     getch();       // ça c'est hyper important en gros ça nétoie les petites merde ça purge pour les futures entrée de l'utilisateur (merci gemini 3 pro max ultra HD 4K) 
 }
 
-void afficherTemps(t_jeu jeu ){ //donc la jvais utiliser gotoxy pour cibler l'endroit ou le temps sera afficher et changé uniquement cette endroit
-//ça sera pas les valeurs finales dans les gotoxy() juste pour qu'on capte 
+void afficherTemps(t_jeu jeu ){ //t_jeu qui correspond au struct qui se trouve dans le headers avec toute les variables importantes du code
     Gotoxy(55, 2);
     Color(14, 0); //encore jaune la couleur du pipi
     printf("TEMPS: %d s  ", jeu.temps_restant);
     Color(15,0);
 }
 
-void afficherVies(t_jeu jeu){ //t_jeu jeu c'est des listes qui contiennent avec les struct (ruben bande) le score la vie et le temps
-//faudra bien tout relier avec le main et le headers
+void afficherVies(t_jeu jeu){  
     Gotoxy(18, 2); //rouge
     Color(12, 0);
     printf("VIES: %d", jeu.vies);
@@ -114,16 +112,13 @@ void afficherGrille(t_jeu jeu, int curseurX, int curseurY, int selectionActive) 
     int startX = 15; 
     int startY = 5;
     
-    // DEFINITION DES SYMBOLES (CHIFFRES)
-    // 0 = Espace vide (pour la lisibilité)
-    // 1 à 5 = Les chiffres demandés
+	//définition des symboles qui composeront la grille
     char symboles[] = {'0', '1', '2', '3', '4', '5'}; 
     
-    // DEFINITION DES COULEURS (Via windows.h Color)
     // 0:Gris, 1:Rouge, 2:Vert, 3:Jaune, 4:Cyan, 5:Violet
     int couleurs[] = {8, 12, 10, 14, 11, 13}; 
 
-    // Cadre Haut
+    // cadre du haut 
     Color(15, 0);
     Gotoxy(startX - 1, startY - 1); printf("╔");
     for(int k=0; k<COLONNES*2; k++) printf("═"); 
@@ -137,31 +132,31 @@ void afficherGrille(t_jeu jeu, int curseurX, int curseurY, int selectionActive) 
         for (int j = 0; j < COLONNES; j++) {
             int val = jeu.grille[i][j];
             
-            // Sécurité si jamais une valeur dépasse 5
+            // sécurité si jamais une valeur dépasse 5
             if (val > 5) val = 0; 
 
             int couleurTexte = couleurs[val];
             int couleurFond = 0; 
 
-            // GESTION CURSEUR
+            // gestion du curseur 
             if (j == curseurX && i == curseurY) {
-                if (selectionActive) couleurFond = 5; // Fond Violet (Sélectionné)
-                else couleurFond = 8; // Fond Gris (Curseur)
+                if (selectionActive) couleurFond = 5; // fond violet quand l'utilisateur selectionne 
+                else couleurFond = 8; // fond gris quand 
                 
-                if(val != 0) couleurTexte = 15; // Texte blanc sur curseur
+                if(val != 0) couleurTexte = 15; //
             }
             
-            // AFFICHAGE DE LA CASE AVEC LE CHIFFRE
+            // affichage de la case 
             Gotoxy(startX + (j * 2), startY + i); 
             Color(couleurTexte, couleurFond);
             printf("%c ", symboles[val]); 
         }
 
-        // Bordure droite
+        // bordure de droite
         Color(15, 0); printf("║");
     }
 
-    // Cadre Bas
+    // cadre du bas
     Gotoxy(startX - 1, startY + LIGNES); printf("╚");
     for(int k=0; k<COLONNES*2; k++) printf("═");
     printf("╝");
@@ -169,28 +164,30 @@ void afficherGrille(t_jeu jeu, int curseurX, int curseurY, int selectionActive) 
 
 }
 
-// Fonction pour cacher le curseur clignotant
+// le curser de base dans la console windows clignotte et cette fonction cacherCurser supprime cela
 void cacherCurseur() {
     HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_CURSOR_INFO info;
     info.dwSize = 100;
-    info.bVisible = FALSE; // FALSE = Invisible
+    info.bVisible = FALSE; // FASLE = invisible
     SetConsoleCursorInfo(consoleHandle, &info);
 }
 
 void afficherContrat(t_jeu jeu) {
-    // On place le contrat à Droite de la grille (x=65) pour ne pas gêner
+    // on place le contrat à Droite de la grille (x=115) pour ne pas gêner
     int x_depart = 115;
     int y_depart = 10;
 
-    // Tableaux pour retrouver les mêmes couleurs/symboles que la grille
-    // Index 0 inutile, on utilise 1 à 5
-    char symboles[] = {' ', 'O', '&', '#', '@', '$'}; 
-    int couleurs[] = {0, 12, 10, 14, 9, 13};
+	//définition des symboles qui composeront la grille
+    char symboles[] = {'0', '1', '2', '3', '4', '5'}; 
+    
+    // 0:Gris, 1:Rouge, 2:Vert, 3:Jaune, 4:Cyan, 5:Violet
+    int couleurs[] = {8, 12, 10, 14, 11, 13}; 
+
 
     Gotoxy(x_depart, y_depart);
-    Color(15, 0); // Blanc
-    printf("--- CONTRAT ---");
+    Color(15, 0); // blanc
+    printf("---- CONTRAT ----");
 
     int i;
     int ligne_actuelle = 0;
@@ -198,23 +195,20 @@ void afficherContrat(t_jeu jeu) {
     // On parcourt les 5 types d'items
     for(i = 1; i <= 5; i++) {
         
-        // On affiche seulement s'il reste des items de ce type à détruire
+        // on affiche seulement s'il reste des items de ce type à détruire
         if (jeu.objectifs[i] > 0) {
             ligne_actuelle++;
-            Gotoxy(x_depart, y_depart + (ligne_actuelle * 2)); // Espacé de 2 lignes
+            Gotoxy(x_depart, y_depart + (ligne_actuelle * 2)); // espacé de 2 ligne
 
-            // 1. Le Symbole en couleur
             Color(couleurs[i], 0); 
             printf("[%c]", symboles[i]);
 
-            // 2. Le nombre restant en blanc
             Color(15, 0);
             // Le "   " à la fin sert à effacer les vieux chiffres (si on passe de 10 à 9)
             printf(" : x %d a eliminer   ", jeu.objectifs[i]);
         }
         else {
-            // Optionnel : Si l'objectif est fini (0), on affiche "OK" en vert
-            // Tu peux supprimer ce 'else' si tu préfères que la ligne disparaisse
+            // a rajouter plus tard : si l'objectif est fini (0), on affiche "OK" en vert
             ligne_actuelle++;
             Gotoxy(x_depart, y_depart + (ligne_actuelle * 2));
             Color(10, 0); // Vert
@@ -222,11 +216,11 @@ void afficherContrat(t_jeu jeu) {
         }
     }
     
-    Color(15, 0); // Reset blanc
+    Color(15, 0); // on remet blanc
 }
 
 
-void afficherCoups(t_jeu jeu) { // Si plus de coups ou pas le temps fin de la partie gros nul
+void afficherCoups(t_jeu jeu) { //permet de connaitre le nombre restant de coups possible
     Gotoxy(80, 2);
     Color(13, 0);
     printf("COUPS : %d", jeu.coups_restants);
@@ -246,6 +240,7 @@ void afficherAide() {
     printf("Espace=selection/valider | X=annuler | Fleches ou ZQSD | P=sauvegarder+menu                    ");
 }
 
+
 //ASCII ART
 //ASCII ART
 
@@ -254,7 +249,7 @@ void ecranAcceuil() {
 	system("cls");
 	int x_depart = 10;
     int y = 5;
-    int espacement = 8; //pour les espacement entre chaque lettre
+    int espacement = 8; //pour les espacement entre chaque grosse lettre
 
 	int x = x_depart;
 	Color(12, 0); //rouge rouge      
@@ -317,13 +312,13 @@ void ecranAcceuil() {
         Gotoxy(35, y + 3);
         if (visible)
             printf(">>> APPUYEZ POUR COMMENCER <<<");
-        else //ça alterne entre les deux
-            printf("                              "); // Efface
+        else //ça alterne entre les deux pour faire l'effet qui clignote
+            printf("                              "); 
         
         visible = !visible;
         Sleep(500); // 0.5 sec
     }
-    getch(); //vide la touche appuyé                                                                                                                                                                                                                                                                                               
+    getch(); //vide la touche pressé                                                                                                                                                                                                                                                                                           
 }
 
 void afficherEcranVictoire(){          
@@ -344,9 +339,9 @@ void afficherEcranVictoire(){
 	y += 2;
 	x = 15;
 	Color(10, 0); //vert
-	Gotoxy(x, y++); printf("██  ██ ██ ▄█████ ██████ ▄████▄ ██ █████▄  ██████ ");
-	Gotoxy(x, y++); printf("██▄▄██ ██ ██       ██   ██  ██ ██ ██▄▄██▄ ██▄▄   ");
-	Gotoxy(x, y++); printf(" ▀██▀  ██ ▀█████   ██   ▀████▀ ██ ██   ██ ██▄▄▄▄ ");
+	Gotoxy(x, y++); printf("		██  ██ ██ ▄█████ ██████ ▄████▄ ██ █████▄  ██████ ");
+	Gotoxy(x, y++); printf("		██▄▄██ ██ ██       ██   ██  ██ ██ ██▄▄██▄ ██▄▄   ");
+	Gotoxy(x, y++); printf("	 	 ▀██▀  ██ ▀█████   ██   ▀████▀ ██ ██   ██ ██▄▄▄▄ ");
 	Color(15, 0);
     Gotoxy(35, y + 4);
     printf("Appuyez sur une touche pour quitter...");
