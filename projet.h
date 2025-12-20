@@ -70,6 +70,7 @@ void appliquerGravite(int grille[LIGNES][COLONNES]);
 int permuterCases(t_jeu *jeu, int x1, int y1, int x2, int y2);
 int detecterMarques(t_jeu *jeu, int marque[LIGNES][COLONNES]);
 int appliquerMarques(t_jeu *jeu, int marque[LIGNES][COLONNES]);
+void detecterFigureL_T(t_jeu *jeu, int marque[LIGNES][COLONNES]);
 
 // Configuration
 void chargerParametresNiveau(int niveau, int objectifs[NB_TYPES], int *coups_max, int *temps_max);
