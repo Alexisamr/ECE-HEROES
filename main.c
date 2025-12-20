@@ -49,7 +49,7 @@ void mettreAJourAffichage(t_jeu jeu, int cX, int cY, int selActive) {
     afficherTemps(jeu);
     afficherCoups(jeu);
     afficherContrat(jeu);
-    afficherGrille(jeu, cX, cY, selActive);
+    afficherGrilleGraphique(jeu, cX, cY, selActive); 
     afficherAide(); // Affiche les commandes en bas
 }
 
