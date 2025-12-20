@@ -6,7 +6,7 @@
 
 // Cette fonction choisit un chiffre au hasard pour remplir une case
 static int typeAleatoire() {
-    // On calcule un nombre entre 1 et le nombre maximum de types (NB_TYPES)
+    // on calcule un nombre entre 1 et le nombre maximum de types 
     return (rand() % NB_TYPES) + 1;
 }
 
