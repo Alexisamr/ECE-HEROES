@@ -339,7 +339,7 @@ void afficherEcranVictoire(){
 
 	y += 2;
 	x = 15;
-	Color(10, 0); //vert
+	Color(10, 0); //verte
 	Gotoxy(x, y++); printf("		██  ██ ██ ▄█████ ██████ ▄████▄ ██ █████▄  ██████ ");
 	Gotoxy(x, y++); printf("		██▄▄██ ██ ██       ██   ██  ██ ██ ██▄▄██▄ ██▄▄   ");
 	Gotoxy(x, y++); printf("	 	 ▀██▀  ██ ▀█████   ██   ▀████▀ ██ ██   ██ ██▄▄▄▄ ");
