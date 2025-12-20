@@ -401,8 +401,7 @@ int sauvegarderSauvegarde(const char *pseudo, int niveau, int vies, int score) {
     return 1;
 }
 
-// [EXTENSION] Détecte une forme en L ou en T (5 items)
-// À appeler à l'intérieur de detecterMarques
+// Détecte une forme en L ou en T de 5 items
 void detecterFigureL_T(t_jeu *jeu, int marque[LIGNES][COLONNES]) {
     int y, x;
     
@@ -412,10 +411,7 @@ void detecterFigureL_T(t_jeu *jeu, int marque[LIGNES][COLONNES]) {
             int val = jeu->grille[y][x];
             if (val <= 0 || val > NB_TYPES) continue;
 
-            // Détection du T (3 horizontaux + 3 verticaux centrés)
-            //  *
-            // ***
-            //  *
+            // détection du T
             if (x > 0 && x < COLONNES - 1 && y > 0 && y < LIGNES - 1) {
                 if (jeu->grille[y][x-1] == val && jeu->grille[y][x+1] == val && // Horizontal
                     jeu->grille[y-1][x] == val && jeu->grille[y+1][x] == val) { // Vertical
@@ -430,15 +426,12 @@ void detecterFigureL_T(t_jeu *jeu, int marque[LIGNES][COLONNES]) {
                 }
             }
 
-            // Détection du L (Exemple: Coin bas-droit)
-            // *
-            // *
-            // ***
+            // détection du L 
             if (y >= 2 && x >= 2) {
                 if (jeu->grille[y-1][x] == val && jeu->grille[y-2][x] == val && // Vertical haut
                     jeu->grille[y][x-1] == val && jeu->grille[y][x-2] == val) { // Horizontal gauche
                     
-                    // Effet : Explosion en croix sur 3 cases
+                    // explosion sur 3 cases
                      int k;
                      for(k=1; k<=3; k++) {
                          if(y-k >= 0) marque[y-k][x] = 1; // Haut
@@ -447,7 +440,7 @@ void detecterFigureL_T(t_jeu *jeu, int marque[LIGNES][COLONNES]) {
                      marque[y][x] = 1;
                 }
             }
-            // (Tu peux dupliquer le bloc "L" pour les 3 autres rotations si tu veux être exhaustif)
+            
         }
     }
 }
