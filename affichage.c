@@ -12,7 +12,7 @@ void Gotoxy(int x, int y) { // grâce a la bibliothèque windows.h nous pouvons 
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
 }
 
-void Color(int t, int f) { // proviens aussi de windows.h et permet les couleurs dans le terminale windows basique 
+void Color(int t, int f) { // viens aussi de windows.h et permet les couleurs dans le terminale windows basique 
     HANDLE H = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(H, f * 16 + t);
 }
