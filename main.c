@@ -4,10 +4,7 @@
 #include <conio.h>
 #include "projet.h"
 
-
-// --- FONCTIONS UTILITAIRES LOCALES ---
-
-// Vérifie si tous les objectifs du contrat sont remplis (return 1 si oui, 0 sinon)
+// Vérifie si tous les objectifs du contrat sont remplis 
 int verifierVictoire(t_jeu jeu) {
     for (int i = 0; i < NB_TYPES; i++) {
         if (jeu.objectifs[i] > 0) return 0; // Il reste des choses à détruire
@@ -15,12 +12,12 @@ int verifierVictoire(t_jeu jeu) {
     return 1; // Tout est à 0, c'est gagné
 }
 
-// Gère la lecture des flèches ET de ZQSD pour simplifier le main
+// Gère la lecture des flèches / ZQSD
 int recupererDirection(int *dx, int *dy) {
     int touche = getch();
     *dx = 0; *dy = 0;
 
-    // Gestion des flèches directionnelles (Code double : 224 puis code touche)
+    // Gestion des flèches directionnelles
     if (touche == 0 || touche == 224) {
         touche = getch(); // On lit le deuxième code
         switch(touche) {
@@ -37,11 +34,11 @@ int recupererDirection(int *dx, int *dy) {
     if (touche == 'q' || touche == 'Q') { *dx = -1; return 1; }
     if (touche == 'd' || touche == 'D') { *dx = 1; return 1; }
     
-    // Autres touches (Espace, P, etc.)
+    // Autres touches 
     return touche; 
 }
 
-// Fonction pour rafraîchir tout l'écran proprement
+// Fonction pour rafraichir
 void mettreAJourAffichage(t_jeu jeu, int cX, int cY, int selActive) {
     afficherNiveau(jeu);
     afficherVies(jeu);
@@ -50,45 +47,45 @@ void mettreAJourAffichage(t_jeu jeu, int cX, int cY, int selActive) {
     afficherCoups(jeu);
     afficherContrat(jeu);
     afficherGrilleGraphique(jeu, cX, cY, selActive); 
-    afficherAide(); // Affiche les commandes en bas
+    afficherAide(); // Affiche les commandes
 }
 
-// --- MAIN PRINCIPAL ---
+//main
 
 int main() {
-    // 1. Initialisation
+    //Initialisation
     srand(time(NULL));
-    SetConsoleOutputCP(65001); // UTF-8 pour les accents et symboles
+    SetConsoleOutputCP(65001); // UTF-8 pour accents et symboles
     system("mode con lines=40 cols=120");
     cacherCurseur();
     t_jeu jeu;
-    char pseudoJoueur[32] = "Joueur"; // Variable locale pour le pseudo
+    char pseudoJoueur[32] = "Joueur"; // Variable locale pour pseudo
     int application_lancee = 1;
     int choixMenu;
 
-    // Affiche l'écran d'accueil une seule fois au lancement
+    // Affiche ecran d'accueil une seule fois au lancement
     ecranAcceuil();
 
     while (application_lancee) {
-        // 2. Menu Principal
+        // Menu Principal
         choixMenu = afficherMenu();
 
-        if (choixMenu == 4) { // QUITTER
+        if (choixMenu == 4) { // quitte
             application_lancee = 0;
         }
-        else if (choixMenu == 1) { // REGLES
+        else if (choixMenu == 1) { // regles
             afficherRegles();
             choixMenu = afficherMenu();
             
         }
-        else if (choixMenu == 2 || choixMenu == 3) { // NOUVELLE PARTIE ou CHARGER
+        else if (choixMenu == 2 || choixMenu == 3) { // nouvelle partie / charge
             
-            // Configuration initiale
+            // Configuration de base
             jeu.vies = 3;
             jeu.score = 0;
             jeu.niveau_actuel = 1;
             
-            // Si on charge, on écrase les valeurs par celles du fichier
+            // Si on charge on ecrase les valeurs par celles du fichier
             if (choixMenu == 3) {
                 system("cls");
                 printf("Entrez votre pseudo pour charger : ");
@@ -105,23 +102,23 @@ int main() {
                     Sleep(1500);
                 }
             } else {
-                // Nouvelle partie : on demande le pseudo pour la future sauvegarde
+                //  on demande le pseudo pour la future sauvegarde
                 system("cls");
                 printf("Choisissez un pseudo : ");
                 scanf("%31s", pseudoJoueur);
             }
 
-            // Boucle des niveaux (Tant qu'on a des vies et qu'on n'a pas fini le niv 3)
+            // boucle niveau
             while (jeu.vies > 0 && jeu.niveau_actuel <= 3) {
                 
-                // --- PRÉPARATION DU NIVEAU ---
+                // prepa niveaux
                 int temps_max, coups_max;
-                // On charge les objectifs via la fonction de jeu.c
+                // chargment objectifs
                 chargerParametresNiveau(jeu.niveau_actuel, jeu.objectifs, &coups_max, &temps_max);
                 jeu.temps_restant = temps_max;
                 jeu.coups_restants = coups_max;
 
-                // Génération de la grille (sans combinaisons déjà faites)
+                // Génération de la grille 
                 genererGrilleSansSuite(jeu.grille);
 
                 // Variables du niveau
@@ -131,127 +128,117 @@ int main() {
                 int curseurX = 0, curseurY = 0;
                 int selectionActive = 0;
                 int selectionX = -1, selectionY = -1;
-                
-                // Tableau pour la détection des marques (match-3)
                 int marques[LIGNES][COLONNES];
 
-                // AJOUTE CES 3 LIGNES ICI :
-                system("cls"); // On nettoie l'écran UNE SEULE FOIS au début
-                int doit_rafraichir = 1; // Le signal pour dire "Redessine l'écran"
+                system("cls"); // On nettoie ecran
+                int doit_rafraichir = 1; // rafraichit
                 int dernier_temps_affiche = -1;
 
                 while (niveau_fini == 0) {
-                // --- BOUCLE DE JEU (FRAME PAR FRAME) ---
+                // boucle
                 while (niveau_fini == 0) {
                     
-                    // A. Gestion du Temps
+                    // Gestion temps
                     time_t maintenant = time(NULL);
                     int temps_ecoule = (int)difftime(maintenant, debut_niveau);
                     jeu.temps_restant = temps_max - temps_ecoule;
 
-                    // B. Affichage complet
+                    // Affichage complet
                     mettreAJourAffichage(jeu, curseurX, curseurY, selectionActive);
 
-                    // C. Gestion des Entrées (Input)
+                    // Imput
                     if (kbhit()) {
                         int dx = 0, dy = 0;
                         int touche = recupererDirection(&dx, &dy);
 
-                        // Si c'est une direction (ZQSD ou Flèches)
+                        // direction
                         if (dx != 0 || dy != 0) {
                             if (curseurX + dx >= 0 && curseurX + dx < COLONNES) curseurX += dx;
                             if (curseurY + dy >= 0 && curseurY + dy < LIGNES)   curseurY += dy;
                         }
-                        // Sélection (Espace)
+                        // Sélection 
                         else if (touche == ' ') {
                             if (selectionActive == 0) {
-                                // Première sélection
+                                // 1 selection
                                 selectionActive = 1;
                                 selectionX = curseurX;
                                 selectionY = curseurY;
                             } else {
-                                // Deuxième appui : Tentative de Permutation
-                                // On vérifie si les cases sont voisines (distance de 1)
+                                // Permutation
+                                // case vosiines
                                 int dist = abs(curseurX - selectionX) + abs(curseurY - selectionY);
                                 
                                 if (dist == 1) {
-                                    // 1. On permute
+                                    // permutation
                                     permuterCases(&jeu, selectionX, selectionY, curseurX, curseurY);
                                     jeu.coups_restants--;
                                     selectionActive = 0;
 
-                                    // 2. Vérification et Animation des chutes (CASCADE)
-                                    // C'est ici qu'on gère la gravité en boucle tant qu'il y a des matchs
                                     int nb_matchs;
                                     do {
                                         // On redessine pour voir la permutation
                                         mettreAJourAffichage(jeu, curseurX, curseurY, 0);
-                                        Sleep(200); // Petite pause visuelle
+                                        Sleep(200); 
 
-                                        // Détection des alignements
+                                        // Détection alignements
                                         nb_matchs = detecterMarques(&jeu, marques);
 
                                         if (nb_matchs > 0) {
                                             // Suppression et Score
                                             appliquerMarques(&jeu, marques);
                                             mettreAJourAffichage(jeu, curseurX, curseurY, 0);
-                                            Sleep(200); // Pause "Explosion"
+                                            Sleep(200); 
 
-                                            // Gravité
+                                            // Gravite
                                             appliquerGravite(jeu.grille);
                                             mettreAJourAffichage(jeu, curseurX, curseurY, 0);
-                                            Sleep(200); // Pause "Chute"
+                                            Sleep(200); 
 
                                             // Remplissage
                                             remplissagecasesvides(jeu.grille);
                                         }
                                         else {
-                                            // Si on vient de permuter et qu'il n'y a AUCUN match
-                                            // Normalement dans Candy Crush on annule le coup.
-                                            // Ici pour simplifier on laisse le coup (pénalité) ou on pourrait re-permuter.
                                         }
 
-                                    } while (nb_matchs > 0); // On recommence tant que ça explose
+                                    } while (nb_matchs > 0); // recommence
 
                                 } else {
-                                    // Si on clique trop loin ou sur la même case, on annule/déplace la sélection
+                                    // Si on clique trop loin
                                     selectionActive = 0; 
                                 }
                             }
                         }
-                        // Code triche développeur : Quitter instantanément
-                        if (touche == 27) { // 27 correspond à la touche ECHAP
+                        if (touche == 27) { //echap
                             system("cls");
-                            printf("Sortie forcee (Dev Mode)...\n");
-                            exit(0); // Ferme brutalement le programme
+                            printf("Sortie\n");
+                            exit(0); // Ferme 
                         }
 
-                        // Touche P : Pause / Sauvegarder
+                        // sauvegarde
                         else if (touche == 'p' || touche == 'P') {
-                            niveau_fini = 3; // Code pour sauvegarde
+                            niveau_fini = 3; 
                         }
                     }
 
-                    // D. Vérification Victoire / Défaite
+                    // Gain Perte
                     if (verifierVictoire(jeu)) {
-                        niveau_fini = 1; // Gagné
+                        niveau_fini = 1; // Gagne
                     }
                     else if (jeu.temps_restant <= 0 || jeu.coups_restants <= 0) {
                         jeu.temps_restant = 0;
                         niveau_fini = 2; // Perdu
                     }
 
-                    Sleep(50); // Ralentir un peu la boucle
+                    Sleep(50); //Sinon c'est trop rapide
                 }
 
-                // --- FIN DU NIVEAU ---
                 if (niveau_fini == 1) {
                     // Victoire
                     jeu.niveau_actuel++;
                     if (jeu.niveau_actuel <= 3) {
                         system("cls");
                         printf("\n\n   BRAVO ! NIVEAU SUIVANT...\n");
-                        // Proposition de sauvegarde rapide
+                        // sauvegarde
                         printf("   Appuyez sur 'S' pour sauvegarder et quitter, ou une autre touche pour continuer.");
                         if (getch() == 's' || getch() == 'S') {
                             sauvegarderSauvegarde(pseudoJoueur, jeu.niveau_actuel, jeu.vies, jeu.score);
@@ -269,7 +256,7 @@ int main() {
                     }
                 }
                 else if (niveau_fini == 3) {
-                    // Sauvegarde manuelle demandée par le joueur
+                    // Sauvegarde 
                     sauvegarderSauvegarde(pseudoJoueur, jeu.niveau_actuel, jeu.vies, jeu.score);
                     system("cls");
                     printf("Partie sauvegardee. Retour au menu...\n");
@@ -283,7 +270,7 @@ int main() {
                 afficherEcranVictoire();
             }
 
-        } // Fin if choixMenu 2 ou 3
+        } 
     }
     
     system("cls");
